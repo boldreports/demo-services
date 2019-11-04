@@ -1,0 +1,13 @@
+.vs/
+.vscode
+.git
+yarn.lock
+node_modules/
+packages
+bin/
+obj/
+package-lock.json
+Scripts
+.nuget
+*.user
+*.log

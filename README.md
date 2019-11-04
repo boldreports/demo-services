@@ -10,6 +10,7 @@ This section guides you to use the Syncfusion Reporting Services in your applica
 * [Online Demos](#online-demos)
 * [Documentation](#documentation)
 * [License](#license)
+* [License key](#license-key)
 * [Support and Feedback](#support-and-feedback)
 
 ## Requirements to run the service
@@ -37,8 +38,8 @@ Package | Purpose
 
 Control | Service URL
 --- | ---
-`Report Viewer` | `http://localhost/{{IIS virtual path Name}}/api/SamplesReportViewer`
-`Report Designer` | `http://localhost/{{IIS virtual path Name}}/api/SamplesReportDesigner`
+`Report Viewer` | `http://localhost/{{IIS virtual path Name}}/api/ReportViewerWebApi`
+`Report Designer` | `http://localhost/{{IIS virtual path Name}}/api/ReportDesignerWebApi`
 
 ## Testing the Reporting Services
 
@@ -66,6 +67,10 @@ A complete Syncfusion Reports documentation can be found on [Bold Reports Help](
 ## License
 
 Refer the [LICENSE](/LICENSE) file.
+
+## License key
+
+You have to update the `BoldLicense.txt` with your Bold Reports license key to seamlessly run this application without any license validation errors. To know more about the Bold Reports licensing, refer the link [here](https://documentation.boldreports.com/licensing/).
 
 ## Support and Feedback
 

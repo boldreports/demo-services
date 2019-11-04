@@ -54,10 +54,10 @@ Control | Service URL
 
 We have showcased our Reports Services in the following Bold Reports online demos.
 
-* [Bold Report JavaScript Reports demos](https://reports.syncfusion.com/home/index.html)
-* [Bold Reports Angular Reports demos](https://reports.syncfusion.com/home/angular.html)
-* [Bold Reports ASP.NET MVC Reports demos](https://reports.syncfusion.com/home/aspnet-mvc.html)
-* [Bold Reports ASP.NET WebForms Reports demos](https://reports.syncfusion.com/home/aspnet-web-forms.html)
+* [Bold Report JavaScript Reports demos](https://demos.boldreports.com/home/index.html)
+* [Bold Reports Angular Reports demos](https://demos.boldreports.com/home/angular.html)
+* [Bold Reports ASP.NET MVC Reports demos](https://demos.boldreports.com/home/aspnet-mvc.html)
+* [Bold Reports ASP.NET WebForms Reports demos](https://demos.boldreports.com/home/aspnet-web-forms.html)
 
 ## Documentation
 

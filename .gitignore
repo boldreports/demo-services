@@ -7,7 +7,6 @@ packages
 bin/
 obj/
 package-lock.json
-Scripts
 .nuget
 *.user
 *.log

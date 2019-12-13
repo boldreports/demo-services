@@ -78,12 +78,12 @@ namespace ReportServices.Controllers.docs
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
             //You can update report options here
-            var resourcesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Scripts");
+            string resourcesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Scripts");
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\bold-reports\common\ej.reporting.common.min.js",
-                resourcesPath + @"\bold-reports\common\ej.reporting.widgets.min.js",
+                resourcesPath + @"\bold-reports\common\bold.reports.common.min.js",
+                resourcesPath + @"\bold-reports\common\bold.reports.widgets.min.js",
                 //Chart component script
                 resourcesPath + @"\bold-reports\data-visualization\ej.chart.min.js",
                 //Gauge component scripts
@@ -92,14 +92,13 @@ namespace ReportServices.Controllers.docs
                 //Map component script
                 resourcesPath + @"\bold-reports\data-visualization\ej.map.min.js",
                 //Report Viewer Script
-                resourcesPath + @"\bold-reports\ej.report-viewer.min.js"
+                resourcesPath + @"\bold-reports\bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
                 resourcesPath + @"\dependent\jquery.min.js"
             };
-
         }
 
         public void OnReportLoaded(ReportViewerOptions reportOption)

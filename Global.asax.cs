@@ -8,16 +8,18 @@ using System.Net;
 using System.Text;
 using System.IO;
 using Bold.Licensing;
+using BoldReports.Base.Logger;
 
 namespace ReportServices
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        public static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         protected void Application_Start()
         {
             // Register Bold Reports license
             string License = File.ReadAllText(Server.MapPath("BoldLicense.txt"), Encoding.UTF8);
+            log4net.GlobalContext.Properties["LogPath"] = this.GetAppDataFolderPath();
+            BoldReports.Base.Logger.LogExtension.RegisterLog4NetConfig();
             BoldLicenseProvider.RegisterLicense(License);
 
             //Establish a TLS connection for image downloading.
@@ -28,5 +30,17 @@ namespace ReportServices
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional });
         }
+        public string GetAppDataFolderPath()
+        {
+            try
+            {
+                return System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }

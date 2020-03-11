@@ -2,9 +2,11 @@
 using BoldReports.Web.ReportViewer;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace ReportServices.Controllers.docs
@@ -12,23 +14,22 @@ namespace ReportServices.Controllers.docs
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ReportingAPIController : ApiController, IReportDesignerController
     {
-        public string GetFilePath(string fileName)
+        private string GetFilePath(string itemName, string key)
         {
-            string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/");
+            string targetFolder = HttpContext.Current.Server.MapPath("~/");
             targetFolder += "Cache";
 
-            if (!System.IO.Directory.Exists(targetFolder))
+            if (!Directory.Exists(targetFolder))
             {
-                System.IO.Directory.CreateDirectory(targetFolder);
+                Directory.CreateDirectory(targetFolder);
             }
 
-            if (!System.IO.Directory.Exists(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken))
+            if (!Directory.Exists(targetFolder + "\\" + key))
             {
-                System.IO.Directory.CreateDirectory(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken);
+                Directory.CreateDirectory(targetFolder + "\\" + key);
             }
 
-            var folderPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Cache\\" + ReportDesignerHelper.EJReportDesignerToken + "\\";
-            return folderPath + fileName;
+            return targetFolder + "\\" + key + "\\" + itemName;
         }
 
         [System.Web.Http.ActionName("GetResource")]
@@ -101,6 +102,46 @@ namespace ReportServices.Controllers.docs
             };
         }
 
+        public bool SetData(string key, string itemId, ItemInfo itemData, out string errMsg)
+        {
+            errMsg = string.Empty;
+            try
+            {
+                if (itemData.Data != null)
+                {
+                    File.WriteAllBytes(this.GetFilePath(itemId, key), itemData.Data);
+                }
+                else if (itemData.PostedFile != null)
+                {
+                    var fileName = itemId;
+                    if (string.IsNullOrEmpty(itemId))
+                    {
+                        fileName = Path.GetFileName(itemData.PostedFile.FileName);
+                    }
+                    itemData.PostedFile.SaveAs(this.GetFilePath(fileName, key));
+                }
+            }
+            catch (Exception ex)
+            {
+                errMsg = ex.Message;
+                return false;
+            }
+            return true;
+        }
+
+        public ResourceInfo GetData(string key, string itemId)
+        {
+            var resource = new ResourceInfo();
+            try
+            {
+                resource.Data = File.ReadAllBytes(this.GetFilePath(itemId, key));
+            }
+            catch (Exception ex)
+            {
+                resource.ErrorMessage = ex.Message;
+            }
+            return resource;
+        }
         public void OnReportLoaded(ReportViewerOptions reportOption)
         {
             //You can update report options here
@@ -111,14 +152,6 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.ProcessReport(jsonResult, this as IReportController);
         }
 
-        public FileModel GetFile(string filename, bool isOverride)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<FileModel> GetFiles(FileType fileType)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

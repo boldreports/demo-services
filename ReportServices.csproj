@@ -143,6 +143,8 @@
     <Content Include="Resources\docs\side-by-side-main-report.rdl" />
     <Content Include="Resources\docs\side-by-side-sub-report.rdl" />
     <Content Include="Resources\docs\sub-report-detail.rdl" />
+	<Content Include="Samples\ReportDesigner.html" />
+    <Content Include="Samples\ReportViewer.html" />
     <Content Include="Scripts\bold-reports\bold.report-designer.min.js" />
     <Content Include="Scripts\bold-reports\bold.report-viewer.min.js" />
     <Content Include="Scripts\bold-reports\common\bold.report-designer-widgets.min.js" />
@@ -195,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log4net.config" />
-    <Content Include="package.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -11,6 +11,7 @@ using BoldReports.Web.ReportDesigner;
 using BoldReports.Web;
 using System.Reflection;
 using Newtonsoft.Json;
+using BoldReports.Base.Logger;
 
 
 namespace ReportServices.Controllers.demos
@@ -101,92 +102,75 @@ namespace ReportServices.Controllers.demos
             return ReportHelper.GetResource(key, resourcetype, isPrint);
         }
 
-        public bool UploadFile(HttpPostedFile httpPostedFile)
+        private string GetFilePath(string itemName, string key)
         {
             string targetFolder = HttpContext.Current.Server.MapPath("~/");
-            string fileName = !string.IsNullOrEmpty(ReportDesignerHelper.SaveFileName) ? ReportDesignerHelper.SaveFileName : Path.GetFileName(httpPostedFile.FileName);
-            targetFolder += CachePath;
+            targetFolder += "Cache";
 
             if (!Directory.Exists(targetFolder))
             {
                 Directory.CreateDirectory(targetFolder);
             }
 
-            if (!Directory.Exists(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken))
+            if (!Directory.Exists(targetFolder + "\\" + key))
             {
-                Directory.CreateDirectory(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken);
+                Directory.CreateDirectory(targetFolder + "\\" + key);
             }
 
-            httpPostedFile.SaveAs(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken + "\\" + fileName);
+            return targetFolder + "\\" + key + "\\" + itemName;
+        }
+
+        public bool SetData(string key, string itemId, ItemInfo itemData, out string errMsg)
+        {
+            errMsg = string.Empty;
+            try
+            {
+                if (itemData.Data != null)
+                {
+                    File.WriteAllBytes(this.GetFilePath(itemId, key), itemData.Data);
+                }
+                else if (itemData.PostedFile != null)
+                {
+                    var fileName = itemId;
+                    if (string.IsNullOrEmpty(itemId))
+                    {
+                        fileName = Path.GetFileName(itemData.PostedFile.FileName);
+                    }
+                    itemData.PostedFile.SaveAs(this.GetFilePath(fileName, key));
+                }
+            }
+            catch (Exception ex)
+            {
+                LogExtension.LogError(ex.Message, ex, MethodBase.GetCurrentMethod());
+                errMsg = ex.Message;
+                return false;
+            }
             return true;
         }
 
-        public List<FileModel> GetFiles(FileType fileType)
+        public ResourceInfo GetData(string key, string itemId)
         {
-            List<FileModel> databases = new List<FileModel>();
-            var folderPath = HttpContext.Current.Server.MapPath("~/") + CachePath + ReportDesignerHelper.EJReportDesignerToken + "\\";
-
-            if (Directory.Exists(folderPath))
+            var resource = new ResourceInfo();
+            try
             {
-                DirectoryInfo dinfo = new DirectoryInfo(folderPath);
-                FileInfo[] Files = dinfo.GetFiles(this.GetFileExtension(fileType));
-
-                foreach (FileInfo file in Files)
-                {
-                    databases.Add(new FileModel() { Name = file.Name, Path = "../" + CachePath + ReportDesignerHelper.EJReportDesignerToken + "/" + file.Name });
-                }
+                resource.Data = File.ReadAllBytes(this.GetFilePath(itemId, key));
             }
-
-            return databases;
-        }
-
-        private string GetFileExtension(FileType fileType)
-        {
-            if (fileType == FileType.Sdf)
+            catch (Exception ex)
             {
-                return "*.sdf";
+                LogExtension.LogError(ex.Message, ex, MethodBase.GetCurrentMethod());
+                resource.ErrorMessage = ex.Message;
             }
-            else if (fileType == FileType.Xml)
-            {
-                return "*.xml";
-            }
-
-            return "*.rdl";
-        }
-
-        public string GetFilePath(string fileName)
-        {
-            string targetFolder = HttpContext.Current.Server.MapPath("~/");
-            targetFolder += CachePath;
-
-            if (!Directory.Exists(targetFolder))
-            {
-                Directory.CreateDirectory(targetFolder);
-            }
-
-            if (!Directory.Exists(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken))
-            {
-                Directory.CreateDirectory(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken);
-            }
-
-            var folderPath = HttpContext.Current.Server.MapPath("~/") + CachePath + ReportDesignerHelper.EJReportDesignerToken + "\\";
-            return folderPath + fileName;
-        }
-
-
-        public FileModel GetFile(string filename, bool isOverride)
-        {
-            throw new NotImplementedException();
+            return resource;
         }
 
         public void LogError(string message, Exception exception, MethodBase methodType, ErrorType errorType)
         {
-            ReportServices.WebApiApplication.log.DebugFormat("Logging Error Message Time: {0};  Error: {1}, Method: {2}; ErrorType: {3}", DateTime.Now, message, methodType, errorType == ErrorType.Error ? "Error" : "Info");
+            LogExtension.LogError(message, exception, methodType, errorType == ErrorType.Error ? "Error" : "Info");
         }
 
         public void LogError(string errorCode, string message, Exception exception, string errorDetail, string methodName, string className)
         {
-            ReportServices.WebApiApplication.log.DebugFormat("Logging Error Message Time: {0};  Error: {1}, Method: {2}; ErrorType: {3}", DateTime.Now, message, methodName, "Error");
+            LogExtension.LogError(message, exception, System.Reflection.MethodBase.GetCurrentMethod(), errorCode + "-" + errorDetail);
         }
 
     }

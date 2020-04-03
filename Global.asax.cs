@@ -9,6 +9,9 @@ using System.Text;
 using System.IO;
 using Bold.Licensing;
 using BoldReports.Base.Logger;
+using BoldReports.Web;
+using Newtonsoft.Json;
+using System.Reflection;
 
 namespace ReportServices
 {
@@ -21,6 +24,12 @@ namespace ReportServices
             log4net.GlobalContext.Properties["LogPath"] = this.GetAppDataFolderPath();
             BoldReports.Base.Logger.LogExtension.RegisterLog4NetConfig();
             BoldLicenseProvider.RegisterLicense(License);
+
+            ReportConfig.DefaultSettings = new ReportSettings()
+            {
+                MapSetting = this.GetMapSettings()
+            };
+
 
             //Establish a TLS connection for image downloading.
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
@@ -40,6 +49,23 @@ namespace ReportServices
             {
                 return null;
             }
+        }
+        private BoldReports.Web.MapSetting GetMapSettings()
+        {
+            try
+            {
+                string basePath = HttpContext.Current.Server.MapPath("~/Scripts");
+                return new MapSetting()
+                {
+                    ShapePath = basePath + "\\ShapeData\\",
+                    MapShapes = JsonConvert.DeserializeObject<List<MapShape>>(System.IO.File.ReadAllText(basePath + "\\ShapeData\\mapshapes.txt"))
+                };
+            }
+            catch (Exception ex)
+            {
+                LogExtension.LogError("Failed to Load Map Settings", ex, MethodBase.GetCurrentMethod());
+            }
+            return null;
         }
 
     }

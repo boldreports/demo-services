@@ -349,6 +349,7 @@
                   </CustomProperty>
                 </CustomProperties>
                 <Style>
+                  <BackgroundColor>#ffffff</BackgroundColor>
                   <FontSize>10.00001pt</FontSize>
                   <Color />
                   <Border>
@@ -551,6 +552,7 @@
                   </CustomProperty>
                 </CustomProperties>
                 <Style>
+                  <BackgroundColor>#ffffff</BackgroundColor>
                   <FontSize>10.00001pt</FontSize>
                   <Color />
                   <Border>

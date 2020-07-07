@@ -12,7 +12,8 @@ using BoldReports.Web;
 using System.Reflection;
 using Newtonsoft.Json;
 using BoldReports.Base.Logger;
-
+using System.Data;
+using ReportServices.Models;
 
 namespace ReportServices.Controllers.demos
 {
@@ -62,6 +63,48 @@ namespace ReportServices.Controllers.demos
         }
 
         [HttpPost]
+        public bool DisposeObjects()
+        {
+            try
+            {
+                string targetFolder = HttpContext.Current.Server.MapPath("~/");
+                targetFolder += "Cache";
+
+                if (Directory.Exists(targetFolder))
+                {
+                    string[] dirs = Directory.GetDirectories(targetFolder);
+
+                    for (var index = 0; index < dirs.Length; index++)
+                    {
+                        string[] files = Directory.GetFiles(dirs[index]);
+
+                        var fileCount = 0;
+                        for (var fileIndex = 0; fileIndex < files.Length; fileIndex++)
+                        {
+                            FileInfo fi = new FileInfo(files[fileIndex]);
+                            if (fi.LastAccessTimeUtc < DateTime.UtcNow.AddDays(-2))
+                            {
+                                fileCount++;
+                            }
+                        }
+
+                        if (files.Length == 0 || (files.Length == fileCount))
+                        {
+                            Directory.Delete(dirs[index], true);
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogExtension.LogError(ex.Message, ex, MethodBase.GetCurrentMethod());
+            }
+            return false;
+        }
+
+
+        [HttpPost]
         [CustomCompression]
         public object PostDesignerAction(Dictionary<string, object> jsonResult)
         {
@@ -88,9 +131,17 @@ namespace ReportServices.Controllers.demos
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
+            string reportName = reportOption.ReportModel.ReportPath;
             reportOption.ReportModel.ReportingServer = this.Server;
             reportOption.ReportModel.ReportServerUrl = this.ServerURL;
             reportOption.ReportModel.ReportServerCredential = new NetworkCredential("Sample", "Passwprd");
+            if (reportName == "load-large-data.rdlc")
+            {
+                SqlQuery.getJson();
+                reportOption.ReportModel.ProcessingMode = ProcessingMode.Remote;
+                reportOption.ReportModel.DataSources.Add(new ReportDataSource("SalesOrderDetail", HttpContext.Current.Cache.Get("SalesOrderDetail") as DataTable));
+            }
+
         }
 
         public void OnReportLoaded(ReportViewerOptions reportOption)

@@ -207,7 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="log4net.config" />
-    <Content Include="package.json" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

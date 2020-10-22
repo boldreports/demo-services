@@ -108,24 +108,14 @@ namespace ReportServices.Controllers.demos
         [CustomCompression]
         public object PostDesignerAction(Dictionary<string, object> jsonResult)
         {
-            string reportType = "";
-            if (jsonResult.ContainsKey("customData"))
-            {
-                string customData = jsonResult["customData"].ToString();
-                reportType = (string)(JsonConvert.DeserializeObject(customData) as dynamic).reportType;
-            }
-            else if (!string.IsNullOrEmpty(HttpContext.Current.Request.Form["customData"]))
-            {
-                string customData = JsonConvert.DeserializeObject(HttpContext.Current.Request.Form["customData"]).ToString();
-                reportType = (JsonConvert.DeserializeObject(customData) as dynamic).reportType;
-            }
-            this.Server.reportType = String.IsNullOrEmpty(reportType) ? "RDL" : reportType;
+            this.UpdateReportType(jsonResult);
             return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null);
         }
 
         [CustomCompression]
         public object PostReportAction(Dictionary<string, object> jsonResult)
         {
+            this.UpdateReportType(jsonResult);
             return ReportHelper.ProcessReport(jsonResult, this as IReportController);
         }
 
@@ -224,5 +214,21 @@ namespace ReportServices.Controllers.demos
             LogExtension.LogError(message, exception, System.Reflection.MethodBase.GetCurrentMethod(), errorCode + "-" + errorDetail);
         }
 
+        public void UpdateReportType(Dictionary<string, object> jsonResult)
+        {
+            string reportType = "";
+
+            if (jsonResult.ContainsKey("customData"))
+            {
+                string customData = jsonResult["customData"].ToString();
+                reportType = (string)(JsonConvert.DeserializeObject(customData) as dynamic).reportType;
+            }
+            else if (!string.IsNullOrEmpty(HttpContext.Current.Request.Form["customData"]))
+            {
+                string customData = JsonConvert.DeserializeObject(HttpContext.Current.Request.Form["customData"]).ToString();
+                reportType = (JsonConvert.DeserializeObject(customData) as dynamic).reportType;
+            }
+            this.Server.reportType = String.IsNullOrEmpty(reportType) ? "RDL" : reportType;
+        }
     }
 }

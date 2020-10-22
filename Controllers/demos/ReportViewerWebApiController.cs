@@ -35,6 +35,7 @@ namespace ReportServices.Controllers.demos
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
+            reportOption.ReportModel.EmbedImageData = true;
             string reportName = reportOption.ReportModel.ReportPath;
             string directoryName = Path.GetDirectoryName(reportName);
             if (directoryName.Length <= 0)

@@ -457,7 +457,7 @@
                     <Style>None</Style>
                   </Border>
                 </Style>
-                <Type>qrbarcode</Type>
+                <Type>matrixbarcode</Type>
               </CustomReportItem>
               <Textbox Name="TextBox34">
                 <Left>1.5pt</Left>
@@ -902,7 +902,7 @@
                     <Style>None</Style>
                   </Border>
                 </Style>
-                <Type>qrbarcode</Type>
+                <Type>matrixbarcode</Type>
               </CustomReportItem>
               <Line Name="Line10">
                 <Left>15.00001pt</Left>

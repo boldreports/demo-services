@@ -40,11 +40,6 @@ namespace ReportServices.Controllers.docs
                 resourcesPath + @"\bold-reports\common\bold.reports.widgets.min.js",
                 //Chart component script
                 resourcesPath + @"\bold-reports\data-visualization\ej.chart.min.js",
-                //Gauge component scripts
-                resourcesPath + @"\bold-reports\data-visualization\ej.lineargauge.min.js",
-                resourcesPath + @"\bold-reports\data-visualization\ej.circulargauge.min.js",
-                //Map component script
-                resourcesPath + @"\bold-reports\data-visualization\ej.map.min.js",
                 //Report Viewer Script
                 resourcesPath + @"\bold-reports\bold.report-viewer.min.js"
             };

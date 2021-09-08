@@ -23,7 +23,7 @@ namespace ReportServices
             string License = File.ReadAllText(Server.MapPath("BoldLicense.txt"), Encoding.UTF8);
             log4net.GlobalContext.Properties["LogPath"] = this.GetAppDataFolderPath();
             BoldReports.Base.Logger.LogExtension.RegisterLog4NetConfig();
-            BoldLicenseProvider.RegisterLicense(License);
+            BoldLicenseProvider.RegisterLicense(License, bool.Parse(System.Configuration.ConfigurationManager.AppSettings["IsOfflineLicense"]));
 
             ReportConfig.DefaultSettings = new ReportSettings()
             {
@@ -73,7 +73,10 @@ namespace ReportServices
             var extensions = !string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings["ExtAssemblies"]) ? System.Configuration.ConfigurationManager.AppSettings["ExtAssemblies"] : string.Empty;
             try
             {
-                return new List<string>(extensions.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
+                var ExtNames = new List<string>(extensions.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries));
+                List<string> ExtCollections = new List<string>();
+                ExtNames.ForEach(Extension => ExtCollections.Add(System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "bin", Extension + ".dll")));
+                return ExtCollections;
             }
             catch (Exception ex)
             {

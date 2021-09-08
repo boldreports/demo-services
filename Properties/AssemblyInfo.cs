@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ReportServices")]
-[assembly: AssemblyCopyright("Copyright © 2001 - 2020 Syncfusion Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2001 - 2021 Syncfusion Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.4.10")]
-[assembly: AssemblyFileVersion("2.4.10")]
+[assembly: AssemblyVersion("3.2.22")]
+[assembly: AssemblyFileVersion("3.2.22")]

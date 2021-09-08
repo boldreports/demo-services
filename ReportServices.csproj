@@ -48,65 +48,59 @@
       <HintPath>packages\BarcodeLib.1.3.0.0\lib\net20\BarcodeLib.dll</HintPath>
     </Reference>
     <Reference Include="Bold.Licensing">
-      <HintPath>packages\Bold.Licensing.2.4.10\lib\net45\Bold.Licensing.dll</HintPath>
+      <HintPath>packages\Bold.Licensing.3.2.22\lib\net45\Bold.Licensing.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="BoldReports.Extensions.BarcodeCRI">
-      <HintPath>packages\BoldReports.Extensions.BarcodeCRI.2.4.10\lib\net45\BoldReports.Extensions.BarcodeCRI.dll</HintPath>
+      <HintPath>packages\BoldReports.Extensions.BarcodeCRI.3.2.22\lib\net45\BoldReports.Extensions.BarcodeCRI.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Web">
-      <HintPath>packages\BoldReports.Web.2.4.10\lib\net45\BoldReports.Web.dll</HintPath>
+      <HintPath>packages\BoldReports.Web.3.2.22\lib\net45\BoldReports.Web.dll</HintPath>
     </Reference>
-     <Reference Include="BoldReports.Data.WebData">
-      <HintPath>packages\BoldReports.Data.WebData.2.4.10\lib\net45\BoldReports.Data.WebData.dll</HintPath>
+    <Reference Include="BoldReports.Data.Csv">
+      <HintPath>packages\BoldReports.Data.Csv.3.2.22\lib\net45\BoldReports.Data.Csv.dll</HintPath>
     </Reference>
-     <Reference Include="BoldReports.Data.PostgreSQL">
-      <HintPath>packages\BoldReports.Data.PostgreSQL.2.4.10\lib\net45\BoldReports.Data.PostgreSQL.dll</HintPath>
-    </Reference>    
-    <Reference Include="log4net, Version=1.2.15.0">
-      <HintPath>packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    <Reference Include="BoldReports.Data.Excel">
+      <HintPath>packages\BoldReports.Data.Excel.3.2.22\lib\net45\BoldReports.Data.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="KBCsv, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
+      <HintPath>packages\KBCsv.5.0.0\lib\netstandard1.0\KBCsv.dll</HintPath>
+    </Reference>
+    <Reference Include="BoldReports.Data.WebData">
+      <HintPath>packages\BoldReports.Data.WebData.3.2.22\lib\net45\BoldReports.Data.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.9.0">
+      <HintPath>packages\log4net.2.0.10\lib\net45\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Npgsql, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <HintPath>packages\Npgsql.4.0.0\lib\net45\Npgsql.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Compression.Base">
-      <HintPath>packages\Syncfusion.Compression.Base.18.3.0.35\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.Compression.Base.19.2.0.44\lib\net45\Syncfusion.Compression.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.DocIO.Base">
-      <HintPath>packages\Syncfusion.DocIO.AspNet.18.3.0.35\lib\net45\Syncfusion.DocIO.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.DocIO.AspNet.19.2.0.44\lib\net45\Syncfusion.DocIO.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Licensing">
-      <HintPath>packages\Syncfusion.Licensing.18.3.0.35\lib\net45\Syncfusion.Licensing.dll</HintPath>
+      <HintPath>packages\Syncfusion.Licensing.19.2.0.44\lib\net45\Syncfusion.Licensing.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.OfficeChart.Base">
-      <HintPath>packages\Syncfusion.OfficeChart.Base.18.3.0.35\lib\net45\Syncfusion.OfficeChart.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.OfficeChart.Base.19.2.0.44\lib\net45\Syncfusion.OfficeChart.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Pdf.Base">
-      <HintPath>packages\Syncfusion.Pdf.AspNet.18.3.0.35\lib\net45\Syncfusion.Pdf.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.Pdf.AspNet.19.2.0.44\lib\net45\Syncfusion.Pdf.Base.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Presentation.Base">
-      <HintPath>packages\Syncfusion.Presentation.AspNet.18.3.0.35\lib\net45\Syncfusion.Presentation.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.Presentation.AspNet.19.2.0.44\lib\net45\Syncfusion.Presentation.Base.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Base.Logger">
-      <HintPath>packages\BoldReports.Base.Logger.2.4.10\lib\net45\BoldReports.Base.Logger.dll</HintPath>
+      <HintPath>packages\BoldReports.Base.Logger.3.2.22\lib\net45\BoldReports.Base.Logger.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfBarcode.WPF">
-      <HintPath>packages\Syncfusion.SfBarcode.WPF.18.3.0.35\lib\net45\Syncfusion.SfBarcode.WPF.dll</HintPath>
+      <HintPath>packages\Syncfusion.SfBarcode.WPF.19.2.0.44\lib\net45\Syncfusion.SfBarcode.WPF.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.XlsIO.Base">
-      <HintPath>packages\Syncfusion.XlsIO.AspNet.18.3.0.35\lib\net45\Syncfusion.XlsIO.Base.dll</HintPath>
+      <HintPath>packages\Syncfusion.XlsIO.AspNet.19.2.0.44\lib\net45\Syncfusion.XlsIO.Base.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Cors">
       <HintPath>packages\Microsoft.AspNet.Cors.5.2.4\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -129,6 +123,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="BoldReports.Data.MySQL">
+      <HintPath>packages\BoldReports.Data.MySQL.3.2.22\lib\net45\BoldReports.Data.MySQL.dll</HintPath>
+    </Reference>
+    <Reference Include="BoldReports.Data.Oracle">
+      <HintPath>packages\BoldReports.Data.Oracle.3.2.22\lib\net45\BoldReports.Data.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="BoldReports.Data.PostgreSQL">
+      <HintPath>packages\BoldReports.Data.PostgreSQL.3.2.22\lib\net45\BoldReports.Data.PostgreSQL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0">
@@ -145,6 +148,21 @@
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>packages\System.Buffers.4.4.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <HintPath>packages\System.Memory.4.5.0\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +187,6 @@
     <Content Include="Scripts\bold-reports\common\ej.unobtrusive.min.js" />
     <Content Include="Scripts\bold-reports\data-visualization\ej.bulletgraph.min.js" />
     <Content Include="Scripts\bold-reports\data-visualization\ej.chart.min.js" />
-    <Content Include="Scripts\bold-reports\data-visualization\ej.circulargauge.min.js" />
-    <Content Include="Scripts\bold-reports\data-visualization\ej.lineargauge.min.js" />
-    <Content Include="Scripts\bold-reports\data-visualization\ej.map.min.js" />
     <Content Include="Scripts\dependent\jquery.min.js" />
     <Content Include="Scripts\ShapeData\africa.js" />
     <Content Include="Scripts\ShapeData\antarctica.js" />
@@ -368,6 +383,8 @@
     <Content Include="Resources\demos\Report\sales-by-year.rdlc" />
     <Content Include="Resources\demos\Report\load-large-data.rdlc" />
     <Content Include="Resources\demos\Report\consolidated-balance-sheet.rdlc" />
+    <Content Include="Resources\demos\Report\paystub.rdlc" />
+    <Content Include="Resources\demos\Report\dynamic-chart-series.rdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

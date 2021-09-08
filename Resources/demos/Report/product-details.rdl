@@ -4,7 +4,6 @@
     <ReportSection>
       <Body>
         <Style>
-          <Color />
           <Border>
             <Style>None</Style>
           </Border>
@@ -16,7 +15,6 @@
             <Height>99pt</Height>
             <Width>454.5pt</Width>
             <Style>
-              <Color />
               <Border>
                 <Style>None</Style>
               </Border>
@@ -25,35 +23,34 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>117pt</Width>
+                  <Width>116.9705pt</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>155.25pt</Width>
+                  <Width>155.2372pt</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>53.25pt</Width>
+                  <Width>53.2118pt</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>65.25pt</Width>
+                  <Width>65.23437pt</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>63.75pt</Width>
+                  <Width>63.83101pt</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>18pt</Height>
+                  <Height>17.9832pt</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="TextBox4">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>18pt</Height>
-                          <Width>117pt</Width>
+                          <Height>17.9832pt</Height>
+                          <Width>116.9707pt</Width>
                           <Style>
-                            <BackgroundColor>#688ac6</BackgroundColor>
-                            <Color />
+                            <BackgroundColor>#e3e6ea</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -71,16 +68,13 @@
                                   <Value>Product Name</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>#FFFFFF</Color>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -93,11 +87,10 @@
                         <Textbox Name="TextBox1">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>18pt</Height>
-                          <Width>155.25pt</Width>
+                          <Height>17.9832pt</Height>
+                          <Width>155.2372pt</Width>
                           <Style>
-                            <BackgroundColor>#688ac6</BackgroundColor>
-                            <Color />
+                            <BackgroundColor>#e3e6ea</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -115,16 +108,13 @@
                                   <Value>Product ID</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>#FFFFFF</Color>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -137,11 +127,10 @@
                         <Textbox Name="TextBox3">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>18pt</Height>
-                          <Width>53.25pt</Width>
+                          <Height>17.9832pt</Height>
+                          <Width>53.21183pt</Width>
                           <Style>
-                            <BackgroundColor>#688ac6</BackgroundColor>
-                            <Color />
+                            <BackgroundColor>#e3e6ea</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -159,16 +148,13 @@
                                   <Value>Qty</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>#FFFFFF</Color>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -181,11 +167,10 @@
                         <Textbox Name="TextBox7">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>18pt</Height>
-                          <Width>65.25pt</Width>
+                          <Height>17.9832pt</Height>
+                          <Width>65.2344pt</Width>
                           <Style>
-                            <BackgroundColor>#688ac6</BackgroundColor>
-                            <Color />
+                            <BackgroundColor>#e3e6ea</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -203,16 +188,13 @@
                                   <Value>Unit Price</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>#FFFFFF</Color>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -225,11 +207,10 @@
                         <Textbox Name="TextBox9">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>18pt</Height>
-                          <Width>63.75pt</Width>
+                          <Height>17.9832pt</Height>
+                          <Width>63.831pt</Width>
                           <Style>
-                            <BackgroundColor>#688ac6</BackgroundColor>
-                            <Color />
+                            <BackgroundColor>#e3e6ea</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -247,16 +228,13 @@
                                   <Value>Total Price</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
-                                    <Color>#FFFFFF</Color>
+                                    <Color>#000000</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -267,18 +245,17 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>81pt</Height>
+                  <Height>81.00375pt</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="TextBox11">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>81pt</Height>
-                          <Width>117pt</Width>
+                          <Height>81.00375pt</Height>
+                          <Width>116.9707pt</Width>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <Color />
                             <PaddingLeft>3.75pt</PaddingLeft>
                             <Border>
                               <Color>#d3d3d3</Color>
@@ -312,11 +289,7 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style>
-                                <Color />
-                              </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
+                              <Style />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -329,10 +302,9 @@
                         <Rectangle Name="Rectangle4">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>81pt</Height>
-                          <Width>155.25pt</Width>
+                          <Height>81.00375pt</Height>
+                          <Width>155.2372pt</Width>
                           <Style>
-                            <Color />
                             <Border>
                               <Color>#d3d3d3</Color>
                               <Style>Solid</Style>
@@ -375,7 +347,6 @@
                                 </CustomProperty>
                               </CustomProperties>
                               <Style>
-                                <Color />
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
@@ -394,11 +365,10 @@
                         <Textbox Name="TextBox6">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>81pt</Height>
-                          <Width>53.25pt</Width>
+                          <Height>81.00375pt</Height>
+                          <Width>53.21183pt</Width>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <Color />
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -421,10 +391,7 @@
                               </TextRuns>
                               <Style>
                                 <TextAlign>Center</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -437,11 +404,10 @@
                         <Textbox Name="TextBox8">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>81pt</Height>
-                          <Width>65.25pt</Width>
+                          <Height>81.00375pt</Height>
+                          <Width>65.2344pt</Width>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <Color />
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -464,10 +430,7 @@
                               </TextRuns>
                               <Style>
                                 <TextAlign>Right</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -480,11 +443,10 @@
                         <Textbox Name="TextBox10">
                           <Left>0in</Left>
                           <Top>0in</Top>
-                          <Height>81pt</Height>
-                          <Width>63.75pt</Width>
+                          <Height>81.00375pt</Height>
+                          <Width>63.831pt</Width>
                           <Style>
                             <VerticalAlign>Middle</VerticalAlign>
-                            <Color />
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -507,10 +469,7 @@
                               </TextRuns>
                               <Style>
                                 <TextAlign>Right</TextAlign>
-                                <Color />
                               </Style>
-                              <SpaceBefore />
-                              <SpaceAfter />
                             </Paragraph>
                           </Paragraphs>
                         </Textbox>
@@ -551,7 +510,6 @@
         <PageWidth>617.25pt</PageWidth>
         <PageHeader>
           <Style>
-            <Color />
             <Border>
               <Style>None</Style>
             </Border>
@@ -567,7 +525,6 @@
               <Width>474pt</Width>
               <Style>
                 <BackgroundColor>#555B63</BackgroundColor>
-                <Color />
                 <Border>
                   <Color>Gray</Color>
                   <Style>None</Style>
@@ -580,7 +537,6 @@
                   <Height>25.5pt</Height>
                   <Width>154.5pt</Width>
                   <Style>
-                    <Color />
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -606,10 +562,7 @@
                       </TextRuns>
                       <Style>
                         <TextAlign>Center</TextAlign>
-                        <Color />
                       </Style>
-                      <SpaceBefore />
-                      <SpaceAfter />
                     </Paragraph>
                   </Paragraphs>
                 </Textbox>
@@ -620,7 +573,6 @@
         </PageHeader>
         <PageFooter>
           <Style>
-            <Color />
             <Border>
               <Style>None</Style>
             </Border>
@@ -634,7 +586,6 @@
         <TopMargin>1in</TopMargin>
         <BottomMargin>1in</BottomMargin>
         <Style>
-          <Color />
           <Border>
             <Style>None</Style>
           </Border>
@@ -648,10 +599,9 @@
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=dataplatformdemodata.syncfusion.com;Initial Catalog=Northwind;User ID=demoreadonly@data-platform-demo;Password=N@c)=Y8s*1&amp;dh</ConnectString>
-        <Prompt />
         <rd:IsDesignState>true</rd:IsDesignState>
-        <CustomProperties />
       </ConnectionProperties>
+      <rd:ImpersonateUser>false</rd:ImpersonateUser>
     </DataSource>
   </DataSources>
   <DataSets>

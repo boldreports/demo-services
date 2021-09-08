@@ -5,7 +5,6 @@
       <Body>
         <Style>
           <FontSize>10.00001pt</FontSize>
-          <Color />
           <Border>
             <Style>None</Style>
           </Border>
@@ -18,7 +17,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -47,7 +45,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -61,7 +58,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -79,18 +75,15 @@
                       <TextRun>
                         <Value>Code128A</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -101,10 +94,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -119,7 +111,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -148,7 +139,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -162,7 +152,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -180,18 +169,15 @@
                       <TextRun>
                         <Value>Code128B</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -202,10 +188,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -220,7 +205,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -235,7 +219,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -253,18 +236,15 @@
                       <TextRun>
                         <Value>Code128C</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -289,7 +269,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -303,10 +282,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -321,7 +299,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -351,7 +328,6 @@
                 <Style>
                   <BackgroundColor>#ffffff</BackgroundColor>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -365,7 +341,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -383,18 +358,15 @@
                       <TextRun>
                         <Value>UPCA</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -405,10 +377,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -423,7 +394,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -452,7 +422,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -466,7 +435,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -484,18 +452,15 @@
                       <TextRun>
                         <Value>QR Code</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -506,10 +471,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -524,7 +488,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -554,7 +517,6 @@
                 <Style>
                   <BackgroundColor>#ffffff</BackgroundColor>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -568,7 +530,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -586,18 +547,15 @@
                       <TextRun>
                         <Value>EAN-13</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -608,10 +566,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -626,7 +583,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -655,7 +611,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -669,7 +624,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -687,18 +641,15 @@
                       <TextRun>
                         <Value>Codabar</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -709,10 +660,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -727,7 +677,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -756,7 +705,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -770,7 +718,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -788,18 +735,15 @@
                       <TextRun>
                         <Value>Interleaved 2 of 5</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -810,10 +754,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -828,7 +771,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -843,7 +785,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -861,18 +802,15 @@
                       <TextRun>
                         <Value>QR Code</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -897,7 +835,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -911,10 +848,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -929,7 +865,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -944,7 +879,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -962,18 +896,15 @@
                       <TextRun>
                         <Value>Code39 Extended</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -998,7 +929,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -1012,10 +942,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -1030,7 +959,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -1045,7 +973,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -1063,18 +990,15 @@
                       <TextRun>
                         <Value>Code93</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -1099,7 +1023,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -1113,10 +1036,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -1131,7 +1053,6 @@
             <Width>202.5002pt</Width>
             <Style>
               <FontSize>10.00001pt</FontSize>
-              <Color />
               <Border>
                 <Width>0.37500pt</Width>
                 <Color>#cccbcb</Color>
@@ -1160,7 +1081,6 @@
                 </CustomProperties>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Style>None</Style>
                   </Border>
@@ -1174,7 +1094,6 @@
                 <Width>199.5002pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
@@ -1192,18 +1111,15 @@
                       <TextRun>
                         <Value>Code39</Value>
                         <Style>
-                          <FontSize>12.00001pt</FontSize>
-                          <Color>#179BD7</Color>
+                          <FontSize>12pt</FontSize>
+                          <Color>#072448</Color>
                         </Style>
                       </TextRun>
                     </TextRuns>
                     <Style>
                       <FontSize>10.00001pt</FontSize>
                       <TextAlign>Center</TextAlign>
-                      <Color />
                     </Style>
-                    <SpaceBefore />
-                    <SpaceAfter />
                   </Paragraph>
                 </Paragraphs>
               </Textbox>
@@ -1214,10 +1130,9 @@
                 <Width>172.5001pt</Width>
                 <Style>
                   <FontSize>10.00001pt</FontSize>
-                  <Color />
                   <Border>
                     <Width>1.125pt</Width>
-                    <Color>#179bd7</Color>
+                    <Color>#072448</Color>
                     <Style>Solid</Style>
                   </Border>
                 </Style>
@@ -1235,7 +1150,6 @@
         <PageHeader>
           <Style>
             <FontSize>10.00001pt</FontSize>
-            <Color />
             <Border>
               <Style>None</Style>
             </Border>
@@ -1252,7 +1166,6 @@
               <Style>
                 <BackgroundColor>#555b63</BackgroundColor>
                 <FontSize>10.00001pt</FontSize>
-                <Color />
                 <Border>
                   <Color>Gray</Color>
                   <Style>None</Style>
@@ -1266,7 +1179,6 @@
                   <Width>120.75pt</Width>
                   <Style>
                     <BackgroundColor>#555b63</BackgroundColor>
-                    <Color />
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -1289,11 +1201,7 @@
                           </Style>
                         </TextRun>
                       </TextRuns>
-                      <Style>
-                        <Color />
-                      </Style>
-                      <SpaceBefore />
-                      <SpaceAfter />
+                      <Style />
                     </Paragraph>
                   </Paragraphs>
                 </Textbox>
@@ -1308,7 +1216,6 @@
         <BottomMargin>37.5pt</BottomMargin>
         <Style>
           <FontSize>10.00001pt</FontSize>
-          <Color />
           <Border>
             <Style>None</Style>
           </Border>

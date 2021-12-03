@@ -822,7 +822,7 @@
                 <CustomProperties>
                   <CustomProperty>
                     <Name>BarcodeValue</Name>
-                    <Value>https://reportserver.syncfusion.com</Value>
+                    <Value>https://demos.boldreports.com</Value>
                   </CustomProperty>
                   <CustomProperty>
                     <Name>BarcodeType</Name>

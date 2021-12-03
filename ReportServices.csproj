@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -48,29 +48,38 @@
       <HintPath>packages\BarcodeLib.1.3.0.0\lib\net20\BarcodeLib.dll</HintPath>
     </Reference>
     <Reference Include="Bold.Licensing">
-      <HintPath>packages\Bold.Licensing.3.2.22\lib\net45\Bold.Licensing.dll</HintPath>
+      <HintPath>packages\Bold.Licensing.3.3.23\lib\net45\Bold.Licensing.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="BoldReports.Extensions.BarcodeCRI">
-      <HintPath>packages\BoldReports.Extensions.BarcodeCRI.3.2.22\lib\net45\BoldReports.Extensions.BarcodeCRI.dll</HintPath>
+    <Reference Include="BoldReports.CRI.Barcode">
+      <HintPath>packages\BoldReports.CRI.Barcode.3.3.23\lib\net45\BoldReports.CRI.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="BoldReports.Data.SSAS">
+      <HintPath>packages\BoldReports.Data.SSAS.3.3.23\lib\net45\BoldReports.Data.SSAS.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Web">
-      <HintPath>packages\BoldReports.Web.3.2.22\lib\net45\BoldReports.Web.dll</HintPath>
-    </Reference>
+      <HintPath>packages\BoldReports.Web.3.3.23\lib\net45\BoldReports.Web.dll</HintPath>
+	</Reference>
     <Reference Include="BoldReports.Data.Csv">
-      <HintPath>packages\BoldReports.Data.Csv.3.2.22\lib\net45\BoldReports.Data.Csv.dll</HintPath>
-    </Reference>
+	  <HintPath>packages\BoldReports.Data.Csv.3.3.23\lib\net45\BoldReports.Data.Csv.dll</HintPath>
+	</Reference>
     <Reference Include="BoldReports.Data.Excel">
-      <HintPath>packages\BoldReports.Data.Excel.3.2.22\lib\net45\BoldReports.Data.Excel.dll</HintPath>
-    </Reference>
+	  <HintPath>packages\BoldReports.Data.Excel.3.3.23\lib\net45\BoldReports.Data.Excel.dll</HintPath>
+	</Reference>
     <Reference Include="KBCsv, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
       <HintPath>packages\KBCsv.5.0.0\lib\netstandard1.0\KBCsv.dll</HintPath>
     </Reference>
-    <Reference Include="BoldReports.Data.WebData">
-      <HintPath>packages\BoldReports.Data.WebData.3.2.22\lib\net45\BoldReports.Data.WebData.dll</HintPath>
+     <Reference Include="BoldReports.Data.WebData">
+      <HintPath>packages\BoldReports.Data.WebData.3.3.23\lib\net45\BoldReports.Data.WebData.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.9.0">
       <HintPath>packages\log4net.2.0.10\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices.AdomdClient">
+      <HintPath>packages\Microsoft.AnalysisServices.AdomdClient.retail.amd64.19.4.0.2\lib\net45\Microsoft.AnalysisServices.AdomdClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices.SPClient.Interfaces">
+      <HintPath>packages\Microsoft.AnalysisServices.AdomdClient.retail.amd64.19.4.0.2\lib\net45\Microsoft.AnalysisServices.SPClient.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Syncfusion.Compression.Base">
@@ -92,7 +101,7 @@
       <HintPath>packages\Syncfusion.Presentation.AspNet.19.2.0.44\lib\net45\Syncfusion.Presentation.Base.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Base.Logger">
-      <HintPath>packages\BoldReports.Base.Logger.3.2.22\lib\net45\BoldReports.Base.Logger.dll</HintPath>
+      <HintPath>packages\BoldReports.Base.Logger.3.3.23\lib\net45\BoldReports.Base.Logger.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfBarcode.WPF">
       <HintPath>packages\Syncfusion.SfBarcode.WPF.19.2.0.44\lib\net45\Syncfusion.SfBarcode.WPF.dll</HintPath>
@@ -123,15 +132,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="BoldReports.Data.MySQL">
-      <HintPath>packages\BoldReports.Data.MySQL.3.2.22\lib\net45\BoldReports.Data.MySQL.dll</HintPath>
-    </Reference>
-    <Reference Include="BoldReports.Data.Oracle">
-      <HintPath>packages\BoldReports.Data.Oracle.3.2.22\lib\net45\BoldReports.Data.Oracle.dll</HintPath>
-    </Reference>
-    <Reference Include="BoldReports.Data.PostgreSQL">
-      <HintPath>packages\BoldReports.Data.PostgreSQL.3.2.22\lib\net45\BoldReports.Data.PostgreSQL.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0">
@@ -421,5 +421,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
 </Project>

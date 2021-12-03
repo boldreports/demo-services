@@ -43,27 +43,7 @@ namespace ReportServices.Controllers.docs
         {
             return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null);
         }
-
-        public bool UploadFile(System.Web.HttpPostedFile httpPostedFile)
-        {
-            string targetFolder = System.Web.HttpContext.Current.Server.MapPath("~/");
-            string fileName = !string.IsNullOrEmpty(ReportDesignerHelper.SaveFileName) ? ReportDesignerHelper.SaveFileName : System.IO.Path.GetFileName(httpPostedFile.FileName);
-            targetFolder += "Cache";
-
-            if (!System.IO.Directory.Exists(targetFolder))
-            {
-                System.IO.Directory.CreateDirectory(targetFolder);
-            }
-
-            if (!System.IO.Directory.Exists(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken))
-            {
-                System.IO.Directory.CreateDirectory(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken);
-            }
-
-            httpPostedFile.SaveAs(targetFolder + "\\" + ReportDesignerHelper.EJReportDesignerToken + "\\" + fileName);
-            return true;
-        }
-
+        
         public void UploadReportAction()
         {
             ReportDesignerHelper.ProcessDesigner(null, this, System.Web.HttpContext.Current.Request.Files[0]);

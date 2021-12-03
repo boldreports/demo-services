@@ -19,10 +19,12 @@ namespace ReportServices.Controllers.demos
 {
     [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("")]
-    public class ReportDesignerWebApiController : ApiController, IReportDesignerController, IReportLogger
+    public class ReportDesignerWebApiController : ApiController, IReportDesignerController, IReportLogger, IReportHelperSettings
     {
         const string CachePath = "Cache\\";
 
+        internal ReportHelperSettings _helperSettings = null;
+        
         internal ExternalServer Server
         {
             get;
@@ -40,14 +42,23 @@ namespace ReportServices.Controllers.demos
             get;
             set;
         }
-
+        
+        internal ReportHelperSettings HelperSettings
+        {
+            get { return this._helperSettings; }
+            set { this._helperSettings = value; }
+        }
         public ReportDesignerWebApiController()
         {
             ExternalServer externalServer = new ExternalServer();
             this.Server = externalServer;
             this.ServerURL = "Sample";
             externalServer.ReportServerUrl = this.ServerURL;
-            ReportDesignerHelper.ReportingServer = externalServer;
+        }
+         public void InitializeSettings(ReportHelperSettings helperSettings)
+        {
+            helperSettings.ReportingServer = Server;
+            HelperSettings = helperSettings;
         }
 
         [HttpPost]

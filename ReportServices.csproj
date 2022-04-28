@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -48,29 +48,29 @@
       <HintPath>packages\BarcodeLib.1.3.0.0\lib\net20\BarcodeLib.dll</HintPath>
     </Reference>
     <Reference Include="Bold.Licensing">
-      <HintPath>packages\Bold.Licensing.3.3.23\lib\net45\Bold.Licensing.dll</HintPath>
+      <HintPath>packages\Bold.Licensing.4.1.78\lib\net45\Bold.Licensing.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="BoldReports.CRI.Barcode">
-      <HintPath>packages\BoldReports.CRI.Barcode.3.3.23\lib\net45\BoldReports.CRI.Barcode.dll</HintPath>
+      <HintPath>packages\BoldReports.CRI.Barcode.4.1.78\lib\net45\BoldReports.CRI.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.SSAS">
-      <HintPath>packages\BoldReports.Data.SSAS.3.3.23\lib\net45\BoldReports.Data.SSAS.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.SSAS.4.1.78\lib\net45\BoldReports.Data.SSAS.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Web">
-      <HintPath>packages\BoldReports.Web.3.3.23\lib\net45\BoldReports.Web.dll</HintPath>
+      <HintPath>packages\BoldReports.Web.4.1.78\lib\net45\BoldReports.Web.dll</HintPath>
 	</Reference>
     <Reference Include="BoldReports.Data.Csv">
-	  <HintPath>packages\BoldReports.Data.Csv.3.3.23\lib\net45\BoldReports.Data.Csv.dll</HintPath>
+	  <HintPath>packages\BoldReports.Data.Csv.4.1.78\lib\net45\BoldReports.Data.Csv.dll</HintPath>
 	</Reference>
     <Reference Include="BoldReports.Data.Excel">
-	  <HintPath>packages\BoldReports.Data.Excel.3.3.23\lib\net45\BoldReports.Data.Excel.dll</HintPath>
+	  <HintPath>packages\BoldReports.Data.Excel.4.1.78\lib\net45\BoldReports.Data.Excel.dll</HintPath>
 	</Reference>
     <Reference Include="KBCsv, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
       <HintPath>packages\KBCsv.5.0.0\lib\netstandard1.0\KBCsv.dll</HintPath>
     </Reference>
      <Reference Include="BoldReports.Data.WebData">
-      <HintPath>packages\BoldReports.Data.WebData.3.3.23\lib\net45\BoldReports.Data.WebData.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.WebData.4.1.78\lib\net45\BoldReports.Data.WebData.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.9.0">
       <HintPath>packages\log4net.2.0.10\lib\net45\log4net.dll</HintPath>
@@ -101,7 +101,7 @@
       <HintPath>packages\Syncfusion.Presentation.AspNet.19.2.0.44\lib\net45\Syncfusion.Presentation.Base.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Base.Logger">
-      <HintPath>packages\BoldReports.Base.Logger.3.3.23\lib\net45\BoldReports.Base.Logger.dll</HintPath>
+      <HintPath>packages\BoldReports.Base.Logger.4.1.78\lib\net45\BoldReports.Base.Logger.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfBarcode.WPF">
       <HintPath>packages\Syncfusion.SfBarcode.WPF.19.2.0.44\lib\net45\Syncfusion.SfBarcode.WPF.dll</HintPath>
@@ -385,6 +385,9 @@
     <Content Include="Resources\demos\Report\consolidated-balance-sheet.rdlc" />
     <Content Include="Resources\demos\Report\paystub.rdlc" />
     <Content Include="Resources\demos\Report\dynamic-chart-series.rdl" />
+    <Content Include="Resources\demos\Report\dynamic-columns.rdl" />
+    <Content Include="Resources\demos\Report\data-bar.rdl" />
+    <Content Include="Resources\demos\Report\spark-line.rdlc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

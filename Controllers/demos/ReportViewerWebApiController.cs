@@ -59,5 +59,13 @@ namespace ReportServices.Controllers.demos
         {
             return ReportHelper.ProcessReport(jsonResult, this);
         }
+
+        [HttpGet]
+        public object GetExternalParameterData()
+        {
+            var productCategory = SqlQuery.getProductCategory();
+            var productSubCategory = SqlQuery.getProductSubCategory();
+            return Json(new { ProductCategoryDetail = productCategory, ProductSubCategoryDetail=productSubCategory });
+        }
     }
 }

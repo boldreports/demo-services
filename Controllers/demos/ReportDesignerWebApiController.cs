@@ -13,7 +13,6 @@ using System.Reflection;
 using Newtonsoft.Json;
 using BoldReports.Base.Logger;
 using System.Data;
-using ReportServices.Models;
 
 namespace ReportServices.Controllers.demos
 {
@@ -135,13 +134,6 @@ namespace ReportServices.Controllers.demos
             reportOption.ReportModel.ReportingServer = this.Server;
             reportOption.ReportModel.ReportServerUrl = this.ServerURL;
             reportOption.ReportModel.ReportServerCredential = new NetworkCredential("Sample", "Passwprd");
-            if (reportName == "load-large-data.rdlc")
-            {
-                SqlQuery.getJson();
-                reportOption.ReportModel.ProcessingMode = ProcessingMode.Remote;
-                reportOption.ReportModel.DataSources.Add(new ReportDataSource("SalesOrderDetail", HttpContext.Current.Cache.Get("SalesOrderDetail") as DataTable));
-            }
-
         }
 
         public void OnReportLoaded(ReportViewerOptions reportOption)

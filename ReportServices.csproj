@@ -48,32 +48,32 @@
       <HintPath>packages\BarcodeLib.1.3.0.0\lib\net20\BarcodeLib.dll</HintPath>
     </Reference>
     <Reference Include="Bold.Licensing">
-      <HintPath>packages\Bold.Licensing.5.2.26\lib\net45\Bold.Licensing.dll</HintPath>
+      <HintPath>packages\Bold.Licensing.5.3.8\lib\net45\Bold.Licensing.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="BoldReports.CRI.Barcode">
-      <HintPath>packages\BoldReports.CRI.Barcode.5.2.26\lib\net45\BoldReports.CRI.Barcode.dll</HintPath>
+      <HintPath>packages\BoldReports.CRI.Barcode.5.3.8\lib\net45\BoldReports.CRI.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.SSAS">
-      <HintPath>packages\BoldReports.Data.SSAS.5.2.26\lib\net45\BoldReports.Data.SSAS.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.SSAS.5.3.8\lib\net45\BoldReports.Data.SSAS.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.ElasticSearch">
-      <HintPath>packages\BoldReports.Data.ElasticSearch.5.2.26\lib\net45\BoldReports.Data.ElasticSearch.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.ElasticSearch.5.3.8\lib\net45\BoldReports.Data.ElasticSearch.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Web">
-      <HintPath>packages\BoldReports.Web.5.2.26\lib\net45\BoldReports.Web.dll</HintPath>
+      <HintPath>packages\BoldReports.Web.5.3.8\lib\net45\BoldReports.Web.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.Csv">
-      <HintPath>packages\BoldReports.Data.Csv.5.2.26\lib\net45\BoldReports.Data.Csv.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.Csv.5.3.8\lib\net45\BoldReports.Data.Csv.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.Excel">
-      <HintPath>packages\BoldReports.Data.Excel.5.2.26\lib\net45\BoldReports.Data.Excel.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.Excel.5.3.8\lib\net45\BoldReports.Data.Excel.dll</HintPath>
     </Reference>
     <Reference Include="KBCsv, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc96fa93a217f7a1, processorArchitecture=MSIL">
       <HintPath>packages\KBCsv.5.0.0\lib\netstandard1.0\KBCsv.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.WebData">
-      <HintPath>packages\BoldReports.Data.WebData.5.2.26\lib\net45\BoldReports.Data.WebData.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.WebData.5.3.8\lib\net45\BoldReports.Data.WebData.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.9.0">
       <HintPath>packages\log4net.2.0.10\lib\net45\log4net.dll</HintPath>
@@ -104,7 +104,7 @@
       <HintPath>packages\Syncfusion.Presentation.AspNet.20.2.0.36\lib\net45\Syncfusion.Presentation.Base.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Base.Logger">
-      <HintPath>packages\BoldReports.Base.Logger.5.2.26\lib\net45\BoldReports.Base.Logger.dll</HintPath>
+      <HintPath>packages\BoldReports.Base.Logger.5.3.8\lib\net45\BoldReports.Base.Logger.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.SfBarcode.WPF">
       <HintPath>packages\Syncfusion.SfBarcode.WPF.20.2.0.36\lib\net45\Syncfusion.SfBarcode.WPF.dll</HintPath>
@@ -136,18 +136,18 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="BoldReports.Data.MySQL">
-      <HintPath>packages\BoldReports.Data.MySQL.5.2.26\lib\net45\BoldReports.Data.MySQL.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.MySQL.5.3.8\lib\net45\BoldReports.Data.MySQL.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.Oracle">
-      <HintPath>packages\BoldReports.Data.Oracle.5.2.26\lib\net45\BoldReports.Data.Oracle.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.Oracle.5.3.8\lib\net45\BoldReports.Data.Oracle.dll</HintPath>
     </Reference>
     <Reference Include="BoldReports.Data.PostgreSQL">
-      <HintPath>packages\BoldReports.Data.PostgreSQL.5.2.26\lib\net45\BoldReports.Data.PostgreSQL.dll</HintPath>
+      <HintPath>packages\BoldReports.Data.PostgreSQL.5.3.8\lib\net45\BoldReports.Data.PostgreSQL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0">
-      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -373,6 +373,7 @@
     <Content Include="Resources\demos\DataSet\PatientDetails.rsd" />
     <Content Include="Resources\demos\DataSource\Northwind.rds" />
     <Content Include="Resources\demos\DataSource\ReportSampleDatabase.rds" />
+    <Content Include="Resources\demos\DataSource\AdventureWorks.rds" />
     <Content Include="Resources\demos\Report\barcode.rdl" />
     <Content Include="Resources\demos\Report\company-sales.rdl" />
     <Content Include="Resources\demos\Report\conditional-row-formatting.rdl" />
@@ -393,12 +394,14 @@
     <Content Include="Resources\demos\Report\website-visitor-analysis.rdl" />
     <Content Include="Resources\demos\Report\product-catalog.rdlc" />
     <Content Include="Resources\demos\Report\sales-by-year.rdlc" />
-    <Content Include="Resources\demos\Report\load-large-data.rdlc" />
+    <Content Include="Resources\demos\Report\load-large-data.rdl" />
     <Content Include="Resources\demos\Report\consolidated-balance-sheet.rdlc" />
     <Content Include="Resources\demos\Report\paystub.rdlc" />
     <Content Include="Resources\demos\Report\dynamic-chart-series.rdl" />
     <Content Include="Resources\demos\Report\dynamic-columns.rdl" />
     <Content Include="Resources\demos\Report\data-bar.rdl" />
+    <Content Include="Resources\demos\Report\sub-report.rdl" />
+    <Content Include="Resources\demos\Report\sub-report-child.rdl" />
     <Content Include="Resources\demos\Report\spark-line.rdlc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

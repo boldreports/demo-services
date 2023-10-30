@@ -191,14 +191,8 @@
     <Content Include="Resources\docs\side-by-side-main-report.rdl" />
     <Content Include="Resources\docs\side-by-side-sub-report.rdl" />
     <Content Include="Resources\docs\sub-report-detail.rdl" />
-    <Content Include="Scripts\bold-reports\bold.report-designer.min.js" />
-    <Content Include="Scripts\bold-reports\bold.report-viewer.min.js" />
-    <Content Include="Scripts\bold-reports\common\bold.report-designer-widgets.min.js" />
-    <Content Include="Scripts\bold-reports\common\bold.reports.common.min.js" />
-    <Content Include="Scripts\bold-reports\common\bold.reports.widgets.min.js" />
-    <Content Include="Scripts\bold-reports\common\ej.unobtrusive.min.js" />
-    <Content Include="Scripts\bold-reports\data-visualization\ej.bulletgraph.min.js" />
-    <Content Include="Scripts\bold-reports\data-visualization\ej.chart.min.js" />
+    <Content Include="Scripts\bold-reports\v2.0\bold.report-designer.min.js" />
+    <Content Include="Scripts\bold-reports\v2.0\bold.report-viewer.min.js" />
     <Content Include="Scripts\dependent\jquery.min.js" />
     <Content Include="Scripts\ShapeData\africa.js" />
     <Content Include="Scripts\ShapeData\antarctica.js" />

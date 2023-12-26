@@ -1,6 +1,6 @@
 # Bold Reporting Services
 
-This Bold Reporting Services repository contains the [ASP.NET MVC Services](https://documentation.boldreports.com/javascript/report-viewer/report-service/create-aspnet-web-api-service/) for the `Report Viewer` and `Report Designer` controls. We have built Bold Reports demos and documentation samples using this service application.
+This Bold Reporting Services repository contains the [ASP.NET Core Services](https://help.boldreports.com/embedded-reporting/javascript-reporting/report-viewer/report-service/create-aspnet-core-web-api-service/) for the `Report Viewer` and `Report Designer` controls. We have built Bold Reports demos and documentation samples using this service application.
 
 This section guides you to use the Syncfusion Reporting Services in your applications.
 

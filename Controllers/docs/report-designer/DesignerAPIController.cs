@@ -1,79 +1,96 @@
-﻿using BoldReports.Web.ReportDesigner;
+﻿using Microsoft.AspNetCore.Mvc;
+using BoldReports.Web.ReportDesigner;
 using BoldReports.Web.ReportViewer;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Http;
+using Microsoft.AspNetCore.Cors;
 
 namespace ReportServices.Controllers.docs
 {
-    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class ReportingAPIController : ApiController, IReportDesignerController
+    [EnableCors("AllowAllOrigins")]
+    [Route("api/[controller]/[action]")]
+    public class ReportingAPIController : Controller, IReportDesignerController
     {
+        private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
+        public ReportingAPIController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache)
+        {
+            _cache = memoryCache;
+        }
         private string GetFilePath(string itemName, string key)
         {
-            string targetFolder = HttpContext.Current.Server.MapPath("~/");
-            targetFolder += "Cache";
+            string targetFolder = Path.Combine(Directory.GetCurrentDirectory(), "Cache");
 
             if (!Directory.Exists(targetFolder))
             {
                 Directory.CreateDirectory(targetFolder);
             }
 
-            if (!Directory.Exists(targetFolder + "\\" + key))
+            if (!Directory.Exists(Path.Combine(targetFolder, key)))
             {
-                Directory.CreateDirectory(targetFolder + "\\" + key);
+                Directory.CreateDirectory(Path.Combine(targetFolder, key));
             }
 
-            return targetFolder + "\\" + key + "\\" + itemName;
+            return Path.Combine(targetFolder, key, itemName);
         }
 
-        [System.Web.Http.ActionName("GetResource")]
+        [ActionName("GetResource")]
         [AcceptVerbs("GET")]
         public object GetImage(string key, string image)
         {
             return ReportDesignerHelper.GetImage(key, image, this);
         }
 
-        public object PostDesignerAction(Dictionary<string, object> jsonResult)
+        [HttpPost]
+        public object PostDesignerAction([FromBody] Dictionary<string, object> jsonResult)
         {
-            return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null);
-        }
-        
-        public void UploadReportAction()
-        {
-            ReportDesignerHelper.ProcessDesigner(null, this, System.Web.HttpContext.Current.Request.Files[0]);
+            return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null, this._cache);
         }
 
-        [System.Web.Http.ActionName("GetResource")]
-        [AcceptVerbs("GET")]		
-        public object GetResource(string key, string resourcetype, bool isPrint)
+        [HttpPost]
+        public object PostFormDesignerAction()
         {
-            return ReportHelper.GetResource(key, resourcetype, isPrint);
+            return ReportDesignerHelper.ProcessDesigner(null, this, null, this._cache);
+        }
+
+        [HttpPost]
+        public object PostFormReportAction()
+        {
+            return ReportHelper.ProcessReport(null, this, this._cache);
+        }
+
+        [HttpPost]
+        public void UploadReportAction()
+        {
+            ReportDesignerHelper.ProcessDesigner(null, this, HttpContext.Request.Form.Files[0], this._cache);
+        }
+
+        [ActionName("GetResource")]
+        [AcceptVerbs("GET")]
+        public object GetResource(ReportResource resource)
+        {
+            return ReportHelper.GetResource(resource, this, _cache);
         }
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
-            //You can update report options here
-            string resourcesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Scripts");
+            // You can update report options here
+            string resourcesPath = Path.Combine(Directory.GetCurrentDirectory(), "Scripts");
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\bold-reports\bold.report-viewer.min.js"
+                Path.Combine(resourcesPath, "bold-reports/common/bold.reports.common.min.js"),
+                Path.Combine(resourcesPath, "bold-reports/common/bold.reports.widgets.min.js"),
+                // Chart component script
+                Path.Combine(resourcesPath, "bold-reports/data-visualization/ej.chart.min.js"),
+                // Report Viewer Script
+                Path.Combine(resourcesPath, "bold-reports/bold.report-viewer.min.js")
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\dependent\jquery.min.js"
+                Path.Combine(resourcesPath, "dependent/jquery.min.js")
             };
         }
 
@@ -84,16 +101,31 @@ namespace ReportServices.Controllers.docs
             {
                 if (itemData.Data != null)
                 {
-                    File.WriteAllBytes(this.GetFilePath(itemId, key), itemData.Data);
+                    System.IO.File.WriteAllBytes(GetFilePath(itemId, key), itemData.Data);
                 }
                 else if (itemData.PostedFile != null)
                 {
                     var fileName = itemId;
                     if (string.IsNullOrEmpty(itemId))
                     {
-                        fileName = Path.GetFileName(itemData.PostedFile.FileName);
+                        fileName = System.IO.Path.GetFileName(itemData.PostedFile.FileName);
                     }
-                    itemData.PostedFile.SaveAs(this.GetFilePath(fileName, key));
+
+                    using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                    {
+                        itemData.PostedFile.OpenReadStream().CopyTo(stream);
+                        byte[] bytes = stream.ToArray();
+                        var writePath = this.GetFilePath(fileName, key);
+
+                        if (System.IO.File.Exists(writePath))
+                        {
+                            System.IO.File.Delete(writePath);
+                        }
+
+                        System.IO.File.WriteAllBytes(writePath, bytes);
+                        stream.Close();
+                        stream.Dispose();
+                    }
                 }
             }
             catch (Exception ex)
@@ -109,7 +141,7 @@ namespace ReportServices.Controllers.docs
             var resource = new ResourceInfo();
             try
             {
-                resource.Data = File.ReadAllBytes(this.GetFilePath(itemId, key));
+                resource.Data = System.IO.File.ReadAllBytes(GetFilePath(itemId, key));
             }
             catch (Exception ex)
             {
@@ -117,16 +149,16 @@ namespace ReportServices.Controllers.docs
             }
             return resource;
         }
+
         public void OnReportLoaded(ReportViewerOptions reportOption)
         {
-            //You can update report options here
+            // You can update report options here
         }
 
-        public object PostReportAction(Dictionary<string, object> jsonResult)
+        [HttpPost]
+        public object PostReportAction([FromBody] Dictionary<string, object> jsonResult)
         {
-            return ReportHelper.ProcessReport(jsonResult, this as IReportController);
+            return ReportHelper.ProcessReport(jsonResult, this as IReportController, this._cache);
         }
-
-        
     }
 }

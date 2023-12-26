@@ -1,16 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 
 namespace ReportServices.Models
 {
     public class SqlQuery
     {
-          public static string getProductCategory()
+        public static string getProductCategory(IMemoryCache _cache)
         {
 
             using (SqlConnection connection = new SqlConnection("Data Source=dataplatformdemodata.syncfusion.com;Initial Catalog=AdventureWorks2016;user id=demoreadonly@data-platform-demo;password=N@c)=Y8s*1&dh;"))
@@ -23,27 +24,28 @@ namespace ReportServices.Models
                 using (DataSet ProductCategories = new DataSet())
                 {
                     adapter.Fill(ProductCategories, "Orders");
-                    HttpContext.Current.Cache.Insert("ProductCategoryDetail", ProductCategories.Tables[0]);
+                    _cache.Set("ProductCategoryDetail", ProductCategories.Tables[0]);
                     connection.Close();
-                    return JsonConvert.SerializeObject(HttpContext.Current.Cache.Get("ProductCategoryDetail"));
+                    return JsonConvert.SerializeObject(_cache.Get("ProductCategoryDetail"));
                 }
             }
         }
-
-        public static string getProductSubCategory()
+        public static string getProductSubCategory(IMemoryCache _cache)
         {
+
             using (SqlConnection connection = new SqlConnection("Data Source=dataplatformdemodata.syncfusion.com;Initial Catalog=AdventureWorks2016;user id=demoreadonly@data-platform-demo;password=N@c)=Y8s*1&dh;"))
             {
                 connection.Open();
-                string queryString = $"SELECT ProductSubcategoryID, ProductCategoryID, Name FROM Production.ProductSubcategory ";
+
+                string queryString = $"SELECT ProductSubcategoryID, ProductCategoryID, Name FROM Production.ProductSubcategory";
                 SqlDataAdapter adapter = new SqlDataAdapter(queryString, connection);
 
-                using (DataSet ProductSubCategories = new DataSet())
+                using (DataSet ProductCategories = new DataSet())
                 {
-                    adapter.Fill(ProductSubCategories);
-                    HttpContext.Current.Cache.Insert("ProductSubCategoryDetail", ProductSubCategories.Tables[0]);
+                    adapter.Fill(ProductCategories, "Orders");
+                    _cache.Set("ProductSubCategoryDetail", ProductCategories.Tables[0]);
                     connection.Close();
-                    return JsonConvert.SerializeObject(HttpContext.Current.Cache.Get("ProductSubCategoryDetail"));
+                    return JsonConvert.SerializeObject(_cache.Get("ProductSubCategoryDetail"));
                 }
             }
         }

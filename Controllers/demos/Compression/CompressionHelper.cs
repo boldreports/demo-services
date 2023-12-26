@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.IO.Compression;
-using System.Linq;
-using System.Web;
 
 namespace ReportServices.Controllers.demos
 {
@@ -34,12 +31,12 @@ namespace ReportServices.Controllers.demos
             }
         }
 
-        public static bool IsCompressionSupported()
+        public static bool IsCompressionSupported(HttpContext context)
         {
-            string AcceptEncoding = HttpContext.Current.Request.Headers["Accept-Encoding"];
+            string acceptEncoding = context.Request.Headers["Accept-Encoding"];
 
-            return ((!string.IsNullOrEmpty(AcceptEncoding) &&
-                    (AcceptEncoding.Contains("gzip") || AcceptEncoding.Contains("deflate"))));
+            return !string.IsNullOrEmpty(acceptEncoding) &&
+                   (acceptEncoding.Contains("gzip") || acceptEncoding.Contains("deflate"));
         }
     }
 }

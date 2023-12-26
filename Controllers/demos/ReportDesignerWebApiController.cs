@@ -1,71 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using System.Web;
-using System.IO;
-using BoldReports.Web.ReportViewer;
-using BoldReports.Web.ReportDesigner;
+﻿using Microsoft.AspNetCore.Mvc;
 using BoldReports.Web;
-using System.Reflection;
+using BoldReports.Web.ReportDesigner;
+using BoldReports.Web.ReportViewer;
 using Newtonsoft.Json;
-using BoldReports.Base.Logger;
-using System.Data;
+using System.Net;
+using System;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Samples.Core.Logger;
+using System.Reflection;
+using Microsoft.AspNetCore.Cors;
 
 namespace ReportServices.Controllers.demos
 {
-    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("")]
-    public class ReportDesignerWebApiController : ApiController, IReportDesignerController, IReportLogger, IReportHelperSettings
+    [EnableCors("AllowAllOrigins")]
+    [Route("api/[controller]/[action]")]
+    public class ReportDesignerWebApiController : Controller, IReportDesignerController, IReportHelperSettings, IReportLogger
     {
-
+        private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
+        private IWebHostEnvironment _hostingEnvironment;
         internal ReportHelperSettings _helperSettings = null;
-        
         internal ExternalServer Server
         {
             get;
             set;
         }
-
         internal string ServerURL
         {
             get;
             set;
         }
-
-        internal string AuthorizationHeaderValue
-        {
-            get;
-            set;
-        }
-        
         internal ReportHelperSettings HelperSettings
         {
             get { return this._helperSettings; }
             set { this._helperSettings = value; }
         }
-        public ReportDesignerWebApiController()
+
+        public ReportDesignerWebApiController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache, IWebHostEnvironment hostingEnvironment)
         {
-            ExternalServer externalServer = new ExternalServer();
+            _cache = memoryCache;
+            _hostingEnvironment = hostingEnvironment;
+            ExternalServer externalServer = new ExternalServer(_hostingEnvironment);
             this.Server = externalServer;
             this.ServerURL = "Sample";
             externalServer.ReportServerUrl = this.ServerURL;
         }
-         public void InitializeSettings(ReportHelperSettings helperSettings)
+        public void InitializeSettings(ReportHelperSettings helperSettings)
         {
             helperSettings.ReportingServer = Server;
             HelperSettings = helperSettings;
         }
 
-        [HttpPost]
-        public void UploadReportAction()
-        {
-            ReportDesignerHelper.ProcessDesigner(null, this, HttpContext.Current.Request.Files[0]);
-        }
-
-        [HttpGet]
+        [ActionName("GetImage")]
+        [AcceptVerbs("GET")]
         public object GetImage(string key, string image)
         {
             return ReportDesignerHelper.GetImage(key, image, this);
@@ -76,7 +65,7 @@ namespace ReportServices.Controllers.demos
         {
             try
             {
-                string targetFolder = HttpContext.Current.Server.MapPath("~/");
+                string targetFolder = this._hostingEnvironment.WebRootPath + "\\";
                 targetFolder += "Cache";
 
                 if (Directory.Exists(targetFolder))
@@ -112,20 +101,11 @@ namespace ReportServices.Controllers.demos
             return false;
         }
 
-
-        [HttpPost]
-        [CustomCompression]
-        public object PostDesignerAction(Dictionary<string, object> jsonResult)
+        [ActionName("GetResource")]
+        [AcceptVerbs("GET")]
+        public object GetResource(ReportResource resource)
         {
-            this.UpdateReportType(jsonResult);
-            return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null);
-        }
-
-        [CustomCompression]
-        public object PostReportAction(Dictionary<string, object> jsonResult)
-        {
-            this.UpdateReportType(jsonResult);
-            return ReportHelper.ProcessReport(jsonResult, this as IReportController);
+            return ReportHelper.GetResource(resource, this, _cache);
         }
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
@@ -134,23 +114,54 @@ namespace ReportServices.Controllers.demos
             reportOption.ReportModel.ReportingServer = this.Server;
             reportOption.ReportModel.ReportServerUrl = this.ServerURL;
             reportOption.ReportModel.ReportServerCredential = new NetworkCredential("Sample", "Passwprd");
+
         }
 
         public void OnReportLoaded(ReportViewerOptions reportOption)
         {
+
         }
 
-        public object GetResource(string key, string resourcetype, bool isPrint)
+        [HttpPost]
+        [CustomCompression]
+        public object PostDesignerAction([FromBody] Dictionary<string, object> jsonResult)
         {
-            return ReportHelper.GetResource(key, resourcetype, isPrint);
+            this.UpdateReportType(jsonResult);
+            return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null, this._cache);
+        }
+
+        [HttpPost]
+        public object PostFormDesignerAction()
+        {
+            return ReportDesignerHelper.ProcessDesigner(null, this, null, this._cache);
+        }
+
+        [HttpPost]
+        public object PostFormReportAction()
+        {
+            return ReportHelper.ProcessReport(null, this, this._cache);
+        }
+
+        [HttpPost]
+        [CustomCompression]
+        public object PostReportAction([FromBody] Dictionary<string, object> jsonResult)
+        {
+            this.UpdateReportType(jsonResult);
+            return ReportHelper.ProcessReport(jsonResult, this, this._cache);
+        }
+
+        [HttpPost]
+        public void UploadReportAction()
+        {
+            ReportDesignerHelper.ProcessDesigner(null, this, this.Request.Form.Files[0], this._cache);
         }
 
         private string GetFilePath(string itemName, string key)
         {
-            string dirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Cache",key);
-            if (!Directory.Exists(dirPath))
+            string dirPath = Path.Combine(this._hostingEnvironment.WebRootPath, "Cache", key);
+            if (!System.IO.Directory.Exists(dirPath))
             {
-                Directory.CreateDirectory(dirPath);
+                System.IO.Directory.CreateDirectory(dirPath);
             }
 
             return Path.Combine(dirPath, itemName);
@@ -163,16 +174,31 @@ namespace ReportServices.Controllers.demos
             {
                 if (itemData.Data != null)
                 {
-                    File.WriteAllBytes(this.GetFilePath(itemId, key), itemData.Data);
+                    System.IO.File.WriteAllBytes(this.GetFilePath(itemId, key), itemData.Data);
                 }
                 else if (itemData.PostedFile != null)
                 {
                     var fileName = itemId;
                     if (string.IsNullOrEmpty(itemId))
                     {
-                        fileName = Path.GetFileName(itemData.PostedFile.FileName);
+                        fileName = System.IO.Path.GetFileName(itemData.PostedFile.FileName);
                     }
-                    itemData.PostedFile.SaveAs(this.GetFilePath(fileName, key));
+
+                    using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+                    {
+                        itemData.PostedFile.OpenReadStream().CopyTo(stream);
+                        byte[] bytes = stream.ToArray();
+                        var writePath = this.GetFilePath(fileName, key);
+
+                        if (System.IO.File.Exists(writePath))
+                        {
+                            System.IO.File.Delete(writePath);
+                        }
+
+                        System.IO.File.WriteAllBytes(writePath, bytes);
+                        stream.Close();
+                        stream.Dispose();
+                    }
                 }
             }
             catch (Exception ex)
@@ -190,9 +216,9 @@ namespace ReportServices.Controllers.demos
             try
             {
                 var filePath = this.GetFilePath(itemId, key);
-                if (itemId.Equals(Path.GetFileName(filePath), StringComparison.InvariantCultureIgnoreCase) && File.Exists(filePath))
+                if (itemId.Equals(Path.GetFileName(filePath), StringComparison.InvariantCultureIgnoreCase) && System.IO.File.Exists(filePath))
                 {
-                    resource.Data = File.ReadAllBytes(filePath);
+                    resource.Data = System.IO.File.ReadAllBytes(filePath);
                     LogExtension.LogInfo(string.Format("Method Name: {0}; Class Name: {1}; Message: {2};", "GetData", "CacheHelper", string.Format("File data retrieved from the path: {0}", filePath)), null);
                 }
                 else
@@ -226,14 +252,17 @@ namespace ReportServices.Controllers.demos
             if (jsonResult.ContainsKey("customData"))
             {
                 string customData = jsonResult["customData"].ToString();
-                reportType = (string)(JsonConvert.DeserializeObject(customData) as dynamic).reportType;
+                reportType = (string)(JsonConvert.DeserializeObject<dynamic>(customData)).reportType;
             }
-            else if (!string.IsNullOrEmpty(HttpContext.Current.Request.Form["customData"]))
+            else if (!string.IsNullOrEmpty(HttpContext.Request.Form["customData"]))
             {
-                string customData = JsonConvert.DeserializeObject(HttpContext.Current.Request.Form["customData"]).ToString();
-                reportType = (JsonConvert.DeserializeObject(customData) as dynamic).reportType;
+                string customData = JsonConvert.DeserializeObject(HttpContext.Request.Form["customData"]).ToString();
+                reportType = (JsonConvert.DeserializeObject<dynamic>(customData)).reportType;
             }
-            this.Server.reportType = String.IsNullOrEmpty(reportType) ? "RDL" : reportType;
+
+            this.Server.reportType = string.IsNullOrEmpty(reportType) ? "RDL" : reportType;
         }
+
     }
+
 }

@@ -1,39 +1,92 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
 using BoldReports.Web;
 using BoldReports.Web.ReportViewer;
-using BoldReports.Base.Logger;
-using ReportServices.Models;
-using System.Data;
+using Microsoft.AspNetCore.Hosting;
+using System.Reflection;
+using Samples.Core.Logger;
+using Microsoft.AspNetCore.Cors;
 
 namespace ReportServices.Controllers.demos
 {
-    [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("")]
-    public class ReportViewerWebApiController : ApiController, IReportController, IReportLogger
+    [EnableCors("AllowAllOrigins")]
+    [Route("api/[controller]/[action]")]
+    public class ReportViewerWebApiController : Controller, IReportController, IReportLogger
     {
-        internal ExternalServer Server { get; set; }
-        internal string ServerURL { get; set; }
+        // Report viewer requires a memory cache to store the information of consecutive client request and
+        // have the rendered report viewer information in server.
+        private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
 
-        public ReportViewerWebApiController()
+        // IHostingEnvironment used with sample to get the application data from wwwroot.
+        private IWebHostEnvironment _hostingEnvironment;
+
+        internal ExternalServer Server { get; set; }
+
+        public string ServerURL { get; set; }
+
+        // Post action to process the report from server based json parameters and send the result back to the client.
+        public ReportViewerWebApiController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache,
+            IWebHostEnvironment hostingEnvironment)
         {
-            ExternalServer externalServer = new ExternalServer();
+            _cache = memoryCache;
+            _hostingEnvironment = hostingEnvironment;
+            ExternalServer externalServer = new ExternalServer(_hostingEnvironment);
             this.Server = externalServer;
             this.ServerURL = "Sample";
             externalServer.ReportServerUrl = this.ServerURL;
         }
 
-        private string resourceRootLoc = "~/Resources/demos/Report/";
-        public object GetResource(string key, string resourcetype, bool isPrint)
+        // Post action to process the report from server based json parameters and send the result back to the client.
+        [HttpPost]
+        [CustomCompression]
+        public object PostReportAction([FromBody] Dictionary<string, object> jsonArray)
         {
-            return ReportHelper.GetResource(key, resourcetype, isPrint);
+            return ReportHelper.ProcessReport(jsonArray, this, this._cache);
         }
 
+        // Method will be called to initialize the report information to load the report with ReportHelper for processing.
+        public void OnInitReportOptions(ReportViewerOptions reportOption)
+        {
+            reportOption.ReportModel.ReportingServer = this.Server;
+            reportOption.ReportModel.ReportServerUrl = this.ServerURL;
+            reportOption.ReportModel.EmbedImageData = true;
+            string reportName = reportOption.ReportModel.ReportPath;
+            string basePath = _hostingEnvironment.WebRootPath;
+            string reportBasePath = @"\Resources\Demos\Report\";
+            string reportPath = reportName.TrimStart('~');
+            if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Remote")
+            {
+                reportPath += ".rdl";
+            }
+            else if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Local")
+            {
+                reportPath += ".rdlc";
+            }
+            FileStream reportStream = new FileStream(basePath + reportBasePath + reportPath, FileMode.Open, FileAccess.Read);
+            reportOption.ReportModel.Stream = reportStream;
+        }
+
+        // Method will be called when reported is loaded with internally to start to layout process with ReportHelper.
+        public void OnReportLoaded(ReportViewerOptions reportOption)
+        {
+        }
+
+        //Get action for getting resources from the report
+        [ActionName("GetResource")]
+        [AcceptVerbs("GET")]
+        // Method will be called from Report Viewer client to get the image src for Image report item.
+        public object GetResource(ReportResource resource)
+        {
+            return ReportHelper.GetResource(resource, this, this._cache);
+        }
+
+        [HttpPost]
+        public object PostFormReportAction()
+        {
+            return ReportHelper.ProcessReport(null, this, _cache);
+        }
         public void LogError(string message, Exception exception, MethodBase methodType, ErrorType errorType)
         {
             LogExtension.LogError(message, exception, methodType, errorType == ErrorType.Error ? "Error" : "Info");
@@ -44,36 +97,12 @@ namespace ReportServices.Controllers.demos
             LogExtension.LogError(message, exception, System.Reflection.MethodBase.GetCurrentMethod(), errorCode + "-" + errorDetail);
         }
 
-        public void OnInitReportOptions(ReportViewerOptions reportOption)
-        {
-            reportOption.ReportModel.ReportingServer = this.Server;
-            reportOption.ReportModel.ReportServerUrl = this.ServerURL;
-            reportOption.ReportModel.EmbedImageData = true;
-            string reportName = reportOption.ReportModel.ReportPath;
-            string directoryName = Path.GetDirectoryName(reportName);
-            if (directoryName.Length <= 0)
-            {
-                reportOption.ReportModel.ReportPath = HttpContext.Current.Server.MapPath(resourceRootLoc + reportName);
-            }
-        }
-
-        public void OnReportLoaded(ReportViewerOptions reportOption)
-        {
-
-        }
-
-        [CustomCompression]
-        public object PostReportAction(Dictionary<string, object> jsonResult)
-        {
-            return ReportHelper.ProcessReport(jsonResult, this);
-        }
-
         [HttpGet]
         public object GetExternalParameterData()
         {
-            var productCategory = SqlQuery.getProductCategory();
-            var productSubCategory = SqlQuery.getProductSubCategory();
-            return Json(new { ProductCategoryDetail = productCategory, ProductSubCategoryDetail=productSubCategory });
+            var productCategory = Models.SqlQuery.getProductCategory(this._cache);
+            var productSubCategory = Models.SqlQuery.getProductSubCategory(this._cache);
+            return Json(new { ProductCategoryDetail = productCategory, ProductSubCategoryDetail = productSubCategory });
         }
     }
 }

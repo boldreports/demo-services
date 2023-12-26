@@ -1,23 +1,34 @@
-﻿using Newtonsoft.Json;
-using BoldReports.Web.ReportViewer;
+﻿using BoldReports.Web.ReportViewer;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.Cors;
+using Microsoft.AspNetCore.Cors;
 
 namespace ReportServices.Controllers.docs
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
-    public class CustomAjaxHeadersController : ApiController, IReportController
+    [EnableCors("AllowAllOrigins")]
+    [Route("api/[controller]/[action]")]
+    public class CustomAjaxHeadersController : Controller, IReportController
     {
+        private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
+        private IWebHostEnvironment _hostingEnvironment;
+        string basePath;
+
+        public CustomAjaxHeadersController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache,
+           IWebHostEnvironment hostingEnvironment)
+        {
+            _cache = memoryCache;
+            _hostingEnvironment = hostingEnvironment;
+            basePath = _hostingEnvironment.WebRootPath;
+        }
+
         //Post action for processing the rdl/rdlc report 
         public string DefaultParameter = null;
         string authenticationHeader;
 
+        [HttpPost]
         public object PostReportAction(Dictionary<string, object> jsonResult)
         {
             if (jsonResult != null)
@@ -29,7 +40,7 @@ namespace ReportServices.Controllers.docs
                 }
 
                 //Get client side custom ajax header and store in local variable
-                authenticationHeader = HttpContext.Current.Request.Headers["Authorization"];
+                authenticationHeader = HttpContext.Request.Headers["Authorization"];
 
                 //Perform your custom validation here
                 if (authenticationHeader == "")
@@ -38,7 +49,7 @@ namespace ReportServices.Controllers.docs
                 }
                 else
                 {
-                    return ReportHelper.ProcessReport(jsonResult, this);
+                    return ReportHelper.ProcessReport(jsonResult, this, this._cache);
                 }
             }
 
@@ -46,31 +57,38 @@ namespace ReportServices.Controllers.docs
         }
 
         //Get action for getting resources from the report
-        [System.Web.Http.ActionName("GetResource")]
+        [ActionName("GetResource")]
         [AcceptVerbs("GET")]
-        public object GetResource(string key, string resourcetype, bool isPrint)
+        public object GetResource(ReportResource resource)
         {
-            return ReportHelper.GetResource(key, resourcetype, isPrint);
+            return ReportHelper.GetResource(resource, this, this._cache);
         }
+
+        [HttpPost]
+        public object PostFormReportAction()
+        {
+            return ReportHelper.ProcessReport(null, this, _cache);
+        }
+
 
         //Method will be called when initialize the report options before start processing the report        
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
-            string resourcesPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Scripts");
+            string resourcesPath = this.basePath;
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\bold-reports\common\bold.reports.widgets.min.js",
+                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
+                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
                 //Chart component script
-                resourcesPath + @"\bold-reports\data-visualization\ej.chart.min.js",
+                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
                 //Report Viewer Script
-                resourcesPath + @"\bold-reports\bold.report-viewer.min.js"
+                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\dependent\jquery.min.js"
+                resourcesPath + @"\scripts\dependent\jquery.min.js"
             };
         }
 

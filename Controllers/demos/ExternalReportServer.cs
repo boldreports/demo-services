@@ -17,20 +17,29 @@ using System.Net.Http;
 using BoldReports.ServerProcessor;
 using System.Web;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ReportServices.Controllers.demos
 {
     public sealed class ExternalServer : ReportingServer
     {
+        private IWebHostEnvironment _hostingEnvironment;
+        string basePath;
         public string reportType
         {
             get;
             set;
         }
+
+        public ExternalServer(IWebHostEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+            basePath = _hostingEnvironment.WebRootPath;
+        }
         public override List<CatalogItem> GetItems(string folderName, ItemTypeEnum type)
         {
             List<CatalogItem> _items = new List<CatalogItem>();
-            string targetFolder = HttpContext.Current.Server.MapPath("~/") + @"Resources\demos\";
+            string targetFolder = this.basePath + @"\Resources\demos\";
 
             if (type == ItemTypeEnum.Folder || type == ItemTypeEnum.Report)
             {
@@ -98,8 +107,8 @@ namespace ReportServices.Controllers.demos
 
         public override System.IO.Stream GetReport()
         {
-            string reportBasePath = @"Resources\demos\Report\";
-            string targetFolder = HttpContext.Current.Server.MapPath("~/") + reportBasePath;
+            string reportBasePath = @"\Resources\demos\Report\";
+            string targetFolder = this.basePath + reportBasePath;
             string reportPath = Path.HasExtension(this.ReportPath) ? targetFolder + this.ReportPath : targetFolder + this.ReportPath + "." + this.reportType.ToLower();
 
             if (File.Exists(reportPath))
@@ -128,7 +137,7 @@ namespace ReportServices.Controllers.demos
             string reportName = reportPath.Substring(reportPath.IndexOf('/') + 1).Trim();
             string catagoryName = reportPath.Substring(0, reportPath.IndexOf('/') > 0 ? reportPath.IndexOf('/') : 0).Trim();
 
-            string targetFolder = HttpContext.Current.Server.MapPath("~/") + @"Resources\demos\Report\";
+            string targetFolder = this.basePath + @"\Resources\Demos\Report\";
 
             string reportPat = targetFolder + catagoryName + @"\" + reportName;
             File.WriteAllBytes(reportPat, reportdata.ToArray());
@@ -144,7 +153,7 @@ namespace ReportServices.Controllers.demos
                 dataSource = _dataSrcPathHierarchy.Last().TrimStart('/');
             }
 
-            string targetFolder = HttpContext.Current.Server.MapPath("~/") + @"Resources\demos\DataSource\";
+            string targetFolder = this.basePath + @"\Resources\Demos\DataSource\";
 
             string dataSourcePath = targetFolder + dataSource + ".rds";
 
@@ -173,7 +182,7 @@ namespace ReportServices.Controllers.demos
 
         public override SharedDatasetinfo GetSharedDataDefinition(string dataSet)
         {
-            string targetFolder = HttpContext.Current.Server.MapPath("~/") + @"Resources\demos\DataSet\";
+            string targetFolder = this.basePath + @"\Resources\Demos\DataSet\";
             string dataSetPath = targetFolder + dataSet + ".rsd";
 
             if (File.Exists(dataSetPath))

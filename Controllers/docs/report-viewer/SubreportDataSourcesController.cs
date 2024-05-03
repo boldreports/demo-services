@@ -51,12 +51,12 @@ namespace ReportServices.Controllers.docs
             if (reportOption.SubReportModel != null)
             {
                 // Opens the report from application Resources folder using FileStream and loads the sub report stream.
-                FileStream reportStream = new FileStream(this.basePath + @"/Resources/docs/product-list.rdlc", FileMode.Open, FileAccess.Read);
+                FileStream reportStream = new FileStream(Path.Combine(this.basePath, "resources", "docs", "product-list.rdlc"), FileMode.Open, FileAccess.Read);
                 reportOption.SubReportModel.Stream = reportStream;                
             }
             else
             {
-                FileStream reportStream = new FileStream(this.basePath + @"/Resources/docs/product-list-main.rdlc", FileMode.Open, FileAccess.Read);
+                FileStream reportStream = new FileStream(Path.Combine(this.basePath, "resources", "docs", "product-list-main.rdlc"), FileMode.Open, FileAccess.Read);
                 reportOption.ReportModel.Stream = reportStream;
             }
 
@@ -64,17 +64,17 @@ namespace ReportServices.Controllers.docs
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.common.min.js",
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.widgets.min.js",
+                // Chart component script
+                resourcesPath + "/scripts/bold-reports/data-visualization/ej.chart.min.js",
+                // Report Viewer Script
+                resourcesPath + "/scripts/bold-reports/bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\scripts\dependent\jquery.min.js"
+                resourcesPath + "/scripts/dependent/jquery.min.js"
             };
         }
 

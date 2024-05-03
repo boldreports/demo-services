@@ -65,8 +65,7 @@ namespace ReportServices.Controllers.demos
         {
             try
             {
-                string targetFolder = this._hostingEnvironment.WebRootPath + "\\";
-                targetFolder += "Cache";
+               string targetFolder = Path.Combine(this._hostingEnvironment.WebRootPath, "Cache");
 
                 if (Directory.Exists(targetFolder))
                 {
@@ -113,7 +112,14 @@ namespace ReportServices.Controllers.demos
             string reportName = reportOption.ReportModel.ReportPath;
             reportOption.ReportModel.ReportingServer = this.Server;
             reportOption.ReportModel.ReportServerUrl = this.ServerURL;
+            reportOption.ReportModel.EmbedImageData = true;
             reportOption.ReportModel.ReportServerCredential = new NetworkCredential("Sample", "Passwprd");
+
+            if (reportOption.ReportModel.FontSettings == null)
+            {
+                reportOption.ReportModel.FontSettings = new BoldReports.RDL.Data.FontSettings();
+            }
+            reportOption.ReportModel.FontSettings.BasePath = Path.Combine(_hostingEnvironment.WebRootPath, "fonts");
 
         }
 

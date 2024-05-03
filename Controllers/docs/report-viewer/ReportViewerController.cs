@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +26,7 @@ namespace ReportServices.Controllers.docs
             basePath = _hostingEnvironment.WebRootPath;
         }
         //Post action for processing the rdl/rdlc report 
-        public object PostReportAction(Dictionary<string, object> jsonResult)
+        public object PostReportAction([FromBody] Dictionary<string, object> jsonResult)
         {
             return ReportHelper.ProcessReport(jsonResult, this, this._cache);
         }
@@ -48,30 +48,32 @@ namespace ReportServices.Controllers.docs
         //Method will be called when initialize the report options before start processing the report        
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
-            //You can update report options here
-
-            string resourcesPath = this.basePath;
-
-            reportOption.ReportModel.ExportResources.Scripts = new List<string>
+            reportOption.ReportModel.EmbedImageData = true;
+            string reportName = reportOption.ReportModel.ReportPath;
+            string basePath = _hostingEnvironment.WebRootPath;
+            string reportPath = reportName.Replace("~/Resource", "resource").Replace("~/", "");
+            if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Remote")
             {
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
-            };
-
-            reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
+                reportPath += ".rdl";
+            }
+            else if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Local")
             {
-                resourcesPath + @"\scripts\dependent\jquery.min.js"
-            };
+                reportPath += ".rdlc";
+            }
+            FileStream reportStream = new FileStream(Path.Combine(basePath, reportPath), FileMode.Open, FileAccess.Read);
+            reportOption.ReportModel.Stream = reportStream;
+
+            if (reportOption.ReportModel.FontSettings == null)
+            {
+                reportOption.ReportModel.FontSettings = new BoldReports.RDL.Data.FontSettings();
+            }
+            reportOption.ReportModel.FontSettings.BasePath = Path.Combine(_hostingEnvironment.WebRootPath, "fonts");
         }
 
         public object SendEmail(Dictionary<string, object> jsonResult)
         {
             string _token = jsonResult["reportViewerToken"].ToString();
-            var stream = ReportHelper.GetReport(_token, jsonResult["exportType"].ToString(), this,  this._cache);
+            var stream = ReportHelper.GetReport(_token, jsonResult["exportType"].ToString(), this, this._cache);
             stream.Position = 0;
 
             if (!ComposeEmail(stream, jsonResult["reportName"].ToString()))

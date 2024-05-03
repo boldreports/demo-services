@@ -47,7 +47,7 @@ namespace ReportServices.Controllers.docs
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
-            string filePath = this.basePath + @"/Resources/docs/product-list.rdlc";
+            string filePath = Path.Combine(this.basePath, "resources", "docs", "product-list.rdlc");
 
             // Opens the report from application Resources folder usinf FileStream
             FileStream reportStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
@@ -59,17 +59,17 @@ namespace ReportServices.Controllers.docs
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.common.min.js",
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.widgets.min.js",
+                // Chart component script
+                resourcesPath + "/scripts/bold-reports/data-visualization/ej.chart.min.js",
+                // Report Viewer Script
+                resourcesPath + "/scripts/bold-reports/bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\scripts\dependent\jquery.min.js"
+                resourcesPath + "/scripts/dependent/jquery.min.js"
             };
         }
 

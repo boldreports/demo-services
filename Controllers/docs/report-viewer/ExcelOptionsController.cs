@@ -50,17 +50,17 @@ namespace ReportServices.Controllers.docs
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.common.min.js",
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.widgets.min.js",
+                // Chart component script
+                resourcesPath + "/scripts/bold-reports/data-visualization/ej.chart.min.js",
+                // Report Viewer Script
+                resourcesPath + "/scripts/bold-reports/bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\scripts\dependent\jquery.min.js"
+                resourcesPath + "/scripts/dependent/jquery.min.js"
             };
 
             reportOption.ReportModel.ExcelOptions = new BoldReports.Writer.ExcelOptions()

@@ -3,6 +3,7 @@ using BoldReports.Web.ReportDesigner;
 using BoldReports.Web.ReportViewer;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Cors;
@@ -14,6 +15,8 @@ namespace ReportServices.Controllers.docs
     public class ReportingAPIController : Controller, IReportDesignerController
     {
         private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
+        
+        private IWebHostEnvironment _hostingEnvironment;
         public ReportingAPIController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache)
         {
             _cache = memoryCache;
@@ -80,18 +83,24 @@ namespace ReportServices.Controllers.docs
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                Path.Combine(resourcesPath, "bold-reports/common/bold.reports.common.min.js"),
-                Path.Combine(resourcesPath, "bold-reports/common/bold.reports.widgets.min.js"),
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.common.min.js",
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.widgets.min.js",
                 // Chart component script
-                Path.Combine(resourcesPath, "bold-reports/data-visualization/ej.chart.min.js"),
+                resourcesPath + "/scripts/bold-reports/data-visualization/ej.chart.min.js",
                 // Report Viewer Script
-                Path.Combine(resourcesPath, "bold-reports/bold.report-viewer.min.js")
+                resourcesPath + "/scripts/bold-reports/bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                Path.Combine(resourcesPath, "dependent/jquery.min.js")
+                resourcesPath + "/scripts/dependent/jquery.min.js"
             };
+
+            if (reportOption.ReportModel.FontSettings == null)
+            {
+                reportOption.ReportModel.FontSettings = new BoldReports.RDL.Data.FontSettings();
+            }
+            reportOption.ReportModel.FontSettings.BasePath = Path.Combine(_hostingEnvironment.WebRootPath, "fonts");
         }
 
         public bool SetData(string key, string itemId, ItemInfo itemData, out string errMsg)

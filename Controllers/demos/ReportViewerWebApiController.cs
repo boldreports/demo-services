@@ -54,7 +54,6 @@ namespace ReportServices.Controllers.demos
             reportOption.ReportModel.EmbedImageData = true;
             string reportName = reportOption.ReportModel.ReportPath;
             string basePath = _hostingEnvironment.WebRootPath;
-            string reportBasePath = @"\Resources\Demos\Report\";
             string reportPath = reportName.TrimStart('~');
             if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Remote")
             {
@@ -64,8 +63,14 @@ namespace ReportServices.Controllers.demos
             {
                 reportPath += ".rdlc";
             }
-            FileStream reportStream = new FileStream(basePath + reportBasePath + reportPath, FileMode.Open, FileAccess.Read);
+            FileStream reportStream = new FileStream(Path.Combine(basePath, "resources", "demos", "Report", reportPath), FileMode.Open, FileAccess.Read);
             reportOption.ReportModel.Stream = reportStream;
+
+            if (reportOption.ReportModel.FontSettings == null)
+            {
+                reportOption.ReportModel.FontSettings = new BoldReports.RDL.Data.FontSettings();
+            }
+            reportOption.ReportModel.FontSettings.BasePath = Path.Combine(_hostingEnvironment.WebRootPath, "fonts");
         }
 
         // Method will be called when reported is loaded with internally to start to layout process with ReportHelper.

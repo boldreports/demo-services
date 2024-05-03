@@ -2,7 +2,7 @@
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Northwind">
+    <DataSource Name="NorthWind">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
         <ConnectString>Data Source=localhost;Initial Catalog=Northwind</ConnectString>
@@ -15,7 +15,7 @@
   <DataSets>
     <DataSet Name="EmployeeDetails">
       <Query>
-        <DataSourceName>Northwind</DataSourceName>
+        <DataSourceName>NorthWind</DataSourceName>
         <QueryParameters>
           <QueryParameter Name="@EmployeeID">
             <Value>=Parameters!EmployeeID.Value</Value>

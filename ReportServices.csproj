@@ -3,7 +3,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <AspNetCoreModuleName>AspNetCoreModuleV2</AspNetCoreModuleName>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net8.0' ">
@@ -11,25 +11,27 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="4.8.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Bold.Licensing" Version="5.4.20" />
-    <PackageReference Include="BoldReports.AspNet.Core" Version="5.4.20" />
-    <PackageReference Include="BoldReports.CRI.Barcode" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Net.Core" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.WebData" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.Csv" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.Excel" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.ElasticSearch" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.SSAS" Version="5.4.20" />
+    <PackageReference Include="Bold.Licensing" Version="6.1.34" />
+    <PackageReference Include="BoldReports.AspNet.Core" Version="6.1.34" />
+    <PackageReference Include="BoldReports.CRI.Barcode" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Net.Core" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.WebData" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.Csv" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.Excel" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.ElasticSearch" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.SSAS" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.Snowflake" Version="5.4.20" />
     <PackageReference Include="log4net" Version="2.0.15" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="BoldReports.Data.MySQL" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.Oracle" Version="5.4.20" />
-    <PackageReference Include="BoldReports.Data.PostgreSQL" Version="5.4.20" />
+    <PackageReference Include="BoldReports.Data.MySQL" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.Oracle" Version="6.1.34" />
+    <PackageReference Include="BoldReports.Data.PostgreSQL" Version="6.1.34" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\**" CopyToOutputDirectory="Always" />

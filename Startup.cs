@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using System.IO.Compression;
 using ReportServices.Models;
 using Microsoft.AspNetCore.ResponseCompression;
 using System.Text;
@@ -76,6 +77,15 @@ namespace ReportServices
 
             }));
             services.AddControllers(); // Add MVC services
+            services.AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true; // Enable compression for HTTPS requests
+                options.Providers.Add<GzipCompressionProvider>();
+            });
+            services.Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Fastest; // Adjust compression level as needed
+            });
         }
 
         private BoldReports.Web.MapSetting GetMapSettings(IWebHostEnvironment _hostingEnvironment)
@@ -120,6 +130,7 @@ namespace ReportServices
                 name: "default",
                 pattern: "api/{controller}/{id?}");
             });
+            app.UseResponseCompression();
         }
     }
 }

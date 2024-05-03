@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
+using System.IO;
 
 namespace ReportServices.Controllers.docs
 {
@@ -48,7 +49,7 @@ namespace ReportServices.Controllers.docs
             if (reportOption.SubReportModel != null)
             {
                 //Change path of the child report. Load new report from Resources.
-                reportOption.SubReportModel.ReportPath = this.basePath + @"~/Resources/docs/sub-report-detail.rdl";
+                reportOption.SubReportModel.ReportPath = Path.Combine(this.basePath, "resources", "docs", "sub-report-detail.rdl");
 
                 //Modify data source connection string of the child report.
                 reportOption.SubReportModel.DataSourceCredentials = new List<BoldReports.Web.DataSourceCredentials>();
@@ -67,17 +68,17 @@ namespace ReportServices.Controllers.docs
 
             reportOption.ReportModel.ExportResources.Scripts = new List<string>
             {
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.common.min.js",
-                resourcesPath + @"\scripts\bold-reports\common\bold.reports.widgets.min.js",
-                //Chart component script
-                resourcesPath + @"\scripts\bold-reports\data-visualization\ej.chart.min.js",
-                //Report Viewer Script
-                resourcesPath + @"\scripts\bold-reports\bold.report-viewer.min.js"
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.common.min.js",
+                resourcesPath + "/scripts/bold-reports/common/bold.reports.widgets.min.js",
+                // Chart component script
+                resourcesPath + "/scripts/bold-reports/data-visualization/ej.chart.min.js",
+                // Report Viewer Script
+                resourcesPath + "/scripts/bold-reports/bold.report-viewer.min.js"
             };
 
             reportOption.ReportModel.ExportResources.DependentScripts = new List<string>
             {
-                resourcesPath + @"\scripts\dependent\jquery.min.js"
+                resourcesPath + "/scripts/dependent/jquery.min.js"
             };
         }
 

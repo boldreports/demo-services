@@ -15,11 +15,13 @@ namespace ReportServices.Controllers.docs
     public class ReportingAPIController : Controller, IReportDesignerController
     {
         private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
-        
         private IWebHostEnvironment _hostingEnvironment;
-        public ReportingAPIController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache)
+        private string _basePath;
+        public ReportingAPIController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache, IWebHostEnvironment hostingEnvironment)
         {
             _cache = memoryCache;
+            _hostingEnvironment = hostingEnvironment;
+            _basePath = _hostingEnvironment.WebRootPath;
         }
         private string GetFilePath(string itemName, string key)
         {

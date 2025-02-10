@@ -33,7 +33,7 @@ namespace ReportServices
             LogExtension.RegisterLog4NetConfig();
 
             string License = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, "BoldLicense.txt"), Encoding.UTF8);
-            BoldLicenseProvider.RegisterLicense(License, bool.Parse(configuration.GetSection("appSettings").GetSection("IsOfflineLicense").Value));
+            BoldLicenseProvider.RegisterLicense(License, bool.Parse(configuration.GetSection("appSettings").GetSection("IsOfflineLicense").Value), bool.Parse(configuration.GetSection("appSettings").GetSection("EnableLicenseLog").Value));
             ReportConfig.DefaultSettings = new ReportSettings()
             {
                 MapSetting = this.GetMapSettings(_hostingEnvironment)

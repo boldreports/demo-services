@@ -118,6 +118,11 @@ namespace ReportServices
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers["Referrer-Policy"] = "no-referrer-when-downgrade";
+                await next();
+            });
             app.UseCookiePolicy();
             app.UseRouting();
             app.UseCors("AllowAllOrigins");

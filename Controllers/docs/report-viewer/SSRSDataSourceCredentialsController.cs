@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Configuration;
 
 namespace ReportServices.Controllers.docs
 {
@@ -12,14 +13,16 @@ namespace ReportServices.Controllers.docs
     {
         private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
         private IWebHostEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration; 
         string basePath;
 
         public SSRSDataSourceCredentialsController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache,
-           IWebHostEnvironment hostingEnvironment)
+           IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _cache = memoryCache;
             _hostingEnvironment = hostingEnvironment;
             basePath = _hostingEnvironment.WebRootPath;
+            _configuration = configuration;
         }
 
         //Post action for processing the rdl/rdlc report 
@@ -47,7 +50,7 @@ namespace ReportServices.Controllers.docs
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
             //Add SSRS Report Server credential
-            reportOption.ReportModel.ReportServerCredential = new System.Net.NetworkCredential("ssrs", "RDLReport1");
+            reportOption.ReportModel.ReportServerCredential = new System.Net.NetworkCredential(_configuration["ssrsReport:userName"], _configuration["ssrsReport:password"]);
 
             //Here the "AdventureWorks" is the data source name provided in report definition. Name is case sensitive.
             reportOption.ReportModel.DataSourceCredentials.Add(new BoldReports.Web.DataSourceCredentials("AdventureWorks", "ssrs1", "RDLReport1"));

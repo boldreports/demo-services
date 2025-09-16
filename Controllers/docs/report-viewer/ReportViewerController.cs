@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using System.Net.Mail;
 using System.Net.Mime;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Configuration;
 
 namespace ReportServices.Controllers.docs
 {
@@ -16,14 +17,16 @@ namespace ReportServices.Controllers.docs
     {
         private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
         private IWebHostEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration; 
         string basePath;
 
         public ReportViewerController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache,
-           IWebHostEnvironment hostingEnvironment)
+           IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _cache = memoryCache;
             _hostingEnvironment = hostingEnvironment;
             basePath = _hostingEnvironment.WebRootPath;
+            _configuration = configuration;
         }
         //Post action for processing the rdl/rdlc report 
         public object PostReportAction([FromBody] Dictionary<string, object> jsonResult)
@@ -60,8 +63,8 @@ namespace ReportServices.Controllers.docs
             {
                 reportPath += ".rdlc";
             }
-            FileStream reportStream = new FileStream(Path.Combine(basePath, reportPath), FileMode.Open, FileAccess.Read);
-            reportOption.ReportModel.Stream = reportStream;
+            var reportFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(basePath)).GetFileInfo(reportPath);
+            reportOption.ReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
 
             if (reportOption.ReportModel.FontSettings == null)
             {
@@ -105,7 +108,7 @@ namespace ReportServices.Controllers.docs
                 }
 
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("xx@gmail.com", "xx");
+                SmtpServer.Credentials = new System.Net.NetworkCredential(_configuration["reportViewer:userName"], _configuration["reportViewer:password"]);
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
 

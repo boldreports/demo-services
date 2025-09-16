@@ -51,13 +51,13 @@ namespace ReportServices.Controllers.docs
             if (reportOption.SubReportModel != null)
             {
                 // Opens the report from application Resources folder using FileStream and loads the sub report stream.
-                FileStream reportStream = new FileStream(Path.Combine(this.basePath, "resources", "docs", "product-list.rdlc"), FileMode.Open, FileAccess.Read);
-                reportOption.SubReportModel.Stream = reportStream;                
+                var reportFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(basePath, "resources", "docs")).GetFileInfo("product-list.rdlc");
+                reportOption.SubReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
             }
             else
             {
-                FileStream reportStream = new FileStream(Path.Combine(this.basePath, "resources", "docs", "product-list-main.rdlc"), FileMode.Open, FileAccess.Read);
-                reportOption.ReportModel.Stream = reportStream;
+                var reportFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(basePath, "resources", "docs")).GetFileInfo("product-list-main.rdlc");
+                reportOption.ReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
             }
 
             string resourcesPath = this.basePath;

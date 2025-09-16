@@ -1,5 +1,5 @@
-﻿#region Copyright Syncfusion Inc. 2001-2025.
-// Copyright Syncfusion Inc. 2001-2025. All rights reserved.
+﻿#region Copyright Syncfusion Inc. 2001-{{copyright}}.
+// Copyright Syncfusion Inc. 2001-{{copyright}}. All rights reserved.
 // Use of this code is subject to the terms of our license.
 // A copy of the current license can be obtained at any time by e-mailing
 // licensing@syncfusion.com. Any infringement will be prosecuted under
@@ -52,10 +52,11 @@ namespace ReportServices.Controllers.demos
 
             if (type == ItemTypeEnum.DataSet)
             {
-                foreach (var file in Directory.GetFiles(Path.Combine(targetFolder, "DataSet")))
+                var dataSetProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(targetFolder, "DataSet"));
+                foreach (var file in dataSetProvider.GetDirectoryContents("").Where(f => !f.IsDirectory))
                 {
                     CatalogItem catalogItem = new CatalogItem();
-                    catalogItem.Name = Path.GetFileNameWithoutExtension(file);
+                    catalogItem.Name = Path.GetFileNameWithoutExtension(file.Name);
                     catalogItem.Type = ItemTypeEnum.DataSet;
                     catalogItem.Id = Regex.Replace(catalogItem.Name, @"[^0-9a-zA-Z]+", "_");
                     _items.Add(catalogItem);
@@ -63,10 +64,11 @@ namespace ReportServices.Controllers.demos
             }
             else if (type == ItemTypeEnum.DataSource)
             {
-                foreach (var file in Directory.GetFiles(Path.Combine(targetFolder, "DataSource")))
+                var dataSourceProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(targetFolder, "DataSource"));
+                foreach (var file in dataSourceProvider.GetDirectoryContents("").Where(f => !f.IsDirectory))
                 {
                     CatalogItem catalogItem = new CatalogItem();
-                    catalogItem.Name = Path.GetFileNameWithoutExtension(file);
+                    catalogItem.Name = Path.GetFileNameWithoutExtension(file.Name);
                     catalogItem.Type = ItemTypeEnum.DataSource;
                     catalogItem.Id = Regex.Replace(catalogItem.Name, @"[^0-9a-zA-Z]+", "_");
                     _items.Add(catalogItem);
@@ -87,10 +89,11 @@ namespace ReportServices.Controllers.demos
             {
                 string reportTypeExt = this.reportType == "RDLC" ? ".rdlc" : ".rdl";
 
-                foreach (var file in Directory.GetFiles(targetFolder, "*" + reportTypeExt))
+                var reportProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(targetFolder);
+                foreach (var file in reportProvider.GetDirectoryContents("").Where(f => !f.IsDirectory && f.Name.EndsWith(reportTypeExt)))
                 {
                     CatalogItem catalogItem = new CatalogItem();
-                    catalogItem.Name = Path.GetFileNameWithoutExtension(file);
+                    catalogItem.Name = Path.GetFileNameWithoutExtension(file.Name);
                     catalogItem.Type = ItemTypeEnum.Report;
                     catalogItem.Id = Regex.Replace(catalogItem.Name, @"[^0-9a-zA-Z]+", "_");
                     _items.Add(catalogItem);
@@ -139,7 +142,6 @@ namespace ReportServices.Controllers.demos
             string targetFolder = Path.Combine(this.basePath, "resources", "demos", "Report");
             string reportPat = Path.Combine(targetFolder, catagoryName, reportName);
             File.WriteAllBytes(reportPat, reportdata.ToArray());
-
             return true;
         }
 

@@ -31,7 +31,6 @@ namespace ReportServices
         {
             log4net.GlobalContext.Properties["LogPath"] = _hostingEnvironment.ContentRootPath;
             LogExtension.RegisterLog4NetConfig();
-
             string License = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, "BoldLicense.txt"), Encoding.UTF8);
             BoldLicenseProvider.RegisterLicense(License, bool.Parse(configuration.GetSection("appSettings").GetSection("IsOfflineLicense").Value), bool.Parse(configuration.GetSection("appSettings").GetSection("EnableLicenseLog").Value));
             ReportConfig.DefaultSettings = new ReportSettings()
@@ -94,11 +93,12 @@ namespace ReportServices
             {
                 string basePath = _hostingEnvironment.WebRootPath;
                 string mapShapePath = Path.Combine(basePath, "ShapeData");
-                mapShapePath = Path.GetFullPath(mapShapePath);
+                var mapFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(mapShapePath).GetFileInfo("mapshapes.txt");
+                using var mapReader = new System.IO.StreamReader(mapFileInfo.CreateReadStream());
                 return new MapSetting()
                 {
                     ShapePath = mapShapePath + '/',
-                    MapShapes = JsonConvert.DeserializeObject<List<MapShape>>(System.IO.File.ReadAllText(Path.Combine(mapShapePath, "mapshapes.txt")))
+                    MapShapes = JsonConvert.DeserializeObject<List<MapShape>>(mapReader.ReadToEnd())
                 };
             }
             catch (Exception ex) { Console.WriteLine(ex); }

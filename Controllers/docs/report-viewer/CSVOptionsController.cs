@@ -37,7 +37,6 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.GetResource(resource, this, this._cache);
         }
 
-
         [HttpPost]
         public object PostFormReportAction()
         {

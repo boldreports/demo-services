@@ -47,11 +47,8 @@ namespace ReportServices.Controllers.docs
 
         public void OnInitReportOptions(ReportViewerOptions reportOption)
         {
-            string filePath = Path.Combine(this.basePath, "resources", "docs", "product-list.rdlc");
-
-            // Opens the report from application Resources folder usinf FileStream
-            FileStream reportStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            reportOption.ReportModel.Stream = reportStream;
+            var reportFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(basePath, "resources", "docs")).GetFileInfo("product-list.rdlc");
+            reportOption.ReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
             reportOption.ReportModel.ProcessingMode = ProcessingMode.Local;
             reportOption.ReportModel.DataSources.Add(new BoldReports.Web.ReportDataSource { Name = "list", Value = ProductList.GetData() });
 

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Samples.Core.Logger;
 using System.Reflection;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Configuration;
 
 namespace ReportServices.Controllers.demos
 {
@@ -21,6 +22,7 @@ namespace ReportServices.Controllers.demos
     {
         private Microsoft.Extensions.Caching.Memory.IMemoryCache _cache;
         private IWebHostEnvironment _hostingEnvironment;
+        private readonly IConfiguration _configuration; 
         internal ReportHelperSettings _helperSettings = null;
         internal ExternalServer Server
         {
@@ -38,10 +40,11 @@ namespace ReportServices.Controllers.demos
             set { this._helperSettings = value; }
         }
 
-        public ReportDesignerWebApiController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache, IWebHostEnvironment hostingEnvironment)
+        public ReportDesignerWebApiController(Microsoft.Extensions.Caching.Memory.IMemoryCache memoryCache, IWebHostEnvironment hostingEnvironment, IConfiguration configuration)
         {
             _cache = memoryCache;
             _hostingEnvironment = hostingEnvironment;
+            _configuration = configuration;
             ExternalServer externalServer = new ExternalServer(_hostingEnvironment);
             this.Server = externalServer;
             this.ServerURL = "Sample";
@@ -65,7 +68,7 @@ namespace ReportServices.Controllers.demos
         {
             try
             {
-               string targetFolder = Path.Combine(this._hostingEnvironment.WebRootPath, "Cache");
+                string targetFolder = Path.Combine(this._hostingEnvironment.WebRootPath, "Cache");
 
                 if (Directory.Exists(targetFolder))
                 {
@@ -113,14 +116,14 @@ namespace ReportServices.Controllers.demos
             reportOption.ReportModel.ReportingServer = this.Server;
             reportOption.ReportModel.ReportServerUrl = this.ServerURL;
             reportOption.ReportModel.EmbedImageData = true;
-            reportOption.ReportModel.ReportServerCredential = new NetworkCredential("Sample", "Passwprd");
+            reportOption.ReportModel.ReportServerCredential = new NetworkCredential(_configuration["reportDesigner:userName"], _configuration["reportDesigner:password"]);
 
             if (reportOption.ReportModel.FontSettings == null)
             {
                 reportOption.ReportModel.FontSettings = new BoldReports.RDL.Data.FontSettings();
             }
             reportOption.ReportModel.FontSettings.BasePath = Path.Combine(_hostingEnvironment.WebRootPath, "fonts");
-
+            reportOption.ReportModel.ExportResources.BrowserExecutablePath = Path.Combine(_hostingEnvironment.WebRootPath, "puppeteer", "Win-901912", "chrome-win");
         }
 
         public void OnReportLoaded(ReportViewerOptions reportOption)
@@ -200,7 +203,6 @@ namespace ReportServices.Controllers.demos
                         {
                             System.IO.File.Delete(writePath);
                         }
-
                         System.IO.File.WriteAllBytes(writePath, bytes);
                         stream.Close();
                         stream.Dispose();

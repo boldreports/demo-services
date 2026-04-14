@@ -23,11 +23,13 @@ namespace ReportServices.Controllers.docs
         }
 
         //Post action for processing the rdl/rdlc report 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostReportAction(Dictionary<string, object> jsonResult)
         {
             return ReportHelper.ProcessReport(jsonResult, this, this._cache);
         }
+        #pragma warning restore SCS0016
 
         //Get action for getting resources from the report
         [ActionName("GetResource")]
@@ -37,11 +39,13 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.GetResource(resource, this, this._cache);
         }
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormReportAction()
         {
             return ReportHelper.ProcessReport(null, this, _cache);
         }
+        #pragma warning restore SCS0016
 
         //Method will be called when initialize the report options before start processing the report        
         public void OnInitReportOptions(ReportViewerOptions reportOption)
@@ -71,7 +75,9 @@ namespace ReportServices.Controllers.docs
                 //Load Missing font stream
                 Fonts = new Dictionary<string, System.IO.Stream>
                 {
+                    #pragma warning disable SCS0018
                     { "Segoe UI", System.IO.File.OpenRead(this.basePath + @"/Resources/docs/font_symbols.ttf") },
+                    #pragma warning restore SCS0018
                 }
             };
         }

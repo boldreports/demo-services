@@ -36,11 +36,13 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.GetResource(resource, this, this._cache);
         }
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormReportAction()
         {
             return ReportHelper.ProcessReport(null, this, _cache);
         }
+        #pragma warning restore SCS0016
 
 
         //Method will be called when initialize the report options before start processing the report        

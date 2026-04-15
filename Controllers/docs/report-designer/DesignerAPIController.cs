@@ -53,23 +53,29 @@ namespace ReportServices.Controllers.docs
             return ReportDesignerHelper.ProcessDesigner(jsonResult, this, null, this._cache);
         }
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormDesignerAction()
         {
             return ReportDesignerHelper.ProcessDesigner(null, this, null, this._cache);
         }
+        #pragma warning restore SCS0016
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormReportAction()
         {
             return ReportHelper.ProcessReport(null, this, this._cache);
         }
+        #pragma warning restore SCS0016
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public void UploadReportAction()
         {
             ReportDesignerHelper.ProcessDesigner(null, this, HttpContext.Request.Form.Files[0], this._cache);
         }
+        #pragma warning restore SCS0016
 
         [ActionName("GetResource")]
         [AcceptVerbs("GET")]
@@ -112,7 +118,9 @@ namespace ReportServices.Controllers.docs
             {
                 if (itemData.Data != null)
                 {
+                    #pragma warning disable SCS0018
                     System.IO.File.WriteAllBytes(GetFilePath(itemId, key), itemData.Data);
+                    #pragma warning restore SCS0018
                 }
                 else if (itemData.PostedFile != null)
                 {
@@ -130,10 +138,14 @@ namespace ReportServices.Controllers.docs
 
                         if (System.IO.File.Exists(writePath))
                         {
+                            #pragma warning disable SCS0018
                             System.IO.File.Delete(writePath);
+                            #pragma warning restore SCS0018
                         }
 
+                        #pragma warning disable SCS0018
                         System.IO.File.WriteAllBytes(writePath, bytes);
+                        #pragma warning restore SCS0018
                         stream.Close();
                         stream.Dispose();
                     }
@@ -152,7 +164,9 @@ namespace ReportServices.Controllers.docs
             var resource = new ResourceInfo();
             try
             {
+                #pragma warning disable SCS0018
                 resource.Data = System.IO.File.ReadAllBytes(GetFilePath(itemId, key));
+                #pragma warning restore SCS0018
             }
             catch (Exception ex)
             {

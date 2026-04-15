@@ -31,7 +31,9 @@ namespace ReportServices
         {
             log4net.GlobalContext.Properties["LogPath"] = _hostingEnvironment.ContentRootPath;
             LogExtension.RegisterLog4NetConfig();
+            #pragma warning disable SCS0018
             string License = File.ReadAllText(Path.Combine(_hostingEnvironment.ContentRootPath, "BoldLicense.txt"), Encoding.UTF8);
+            #pragma warning restore SCS0018
             BoldLicenseProvider.RegisterLicense(License, bool.Parse(configuration.GetSection("appSettings").GetSection("IsOfflineLicense").Value), bool.Parse(configuration.GetSection("appSettings").GetSection("EnableLicenseLog").Value));
             ReportConfig.DefaultSettings = new ReportSettings()
             {

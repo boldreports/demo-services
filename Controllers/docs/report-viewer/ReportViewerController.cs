@@ -42,11 +42,13 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.GetResource(resource, this, this._cache);
         }
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormReportAction()
         {
             return ReportHelper.ProcessReport(null, this, _cache);
         }
+        #pragma warning restore SCS0016
 
         //Method will be called when initialize the report options before start processing the report        
         public void OnInitReportOptions(ReportViewerOptions reportOption)
@@ -54,7 +56,7 @@ namespace ReportServices.Controllers.docs
             reportOption.ReportModel.EmbedImageData = true;
             string reportName = reportOption.ReportModel.ReportPath;
             string basePath = _hostingEnvironment.WebRootPath;
-            string reportPath = reportName.Replace("~/Resource", "resource").Replace("~/", "");
+            string reportPath = reportName.Replace("~/Resource", "resource").Replace("~\\", "");
             if ((dynamic)reportOption.ReportModel.ReportPath.Split('.').Length <= 1 && reportOption.ReportModel.ProcessingMode.ToString() == "Remote")
             {
                 reportPath += ".rdl";
@@ -64,7 +66,22 @@ namespace ReportServices.Controllers.docs
                 reportPath += ".rdlc";
             }
             var reportFileInfo = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(Path.Combine(basePath)).GetFileInfo(reportPath);
-            reportOption.ReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
+            if (reportOption.SubReportModel != null)
+            {
+                reportOption.SubReportModel.ReportPath = Path.Combine(this.basePath, "resources", "docs", reportOption.SubReportModel.ReportPath);
+                #pragma warning disable SCS0018
+                FileStream inputSubStream = new FileStream(reportOption.SubReportModel.ReportPath, FileMode.Open, FileAccess.Read);
+                #pragma warning restore SCS0018
+                MemoryStream SubStream = new MemoryStream();
+                inputSubStream.CopyTo(SubStream);
+                SubStream.Position = 0;
+                inputSubStream.Close();
+                reportOption.SubReportModel.Stream = SubStream;
+            }
+            else
+            {
+                reportOption.ReportModel.Stream = reportFileInfo.Exists ? reportFileInfo.CreateReadStream() : throw new FileNotFoundException();
+            }
 
             if (reportOption.ReportModel.FontSettings == null)
             {

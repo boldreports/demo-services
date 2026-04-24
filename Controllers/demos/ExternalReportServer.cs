@@ -1,5 +1,5 @@
-﻿#region Copyright Syncfusion Inc. 2001-2025.
-// Copyright Syncfusion Inc. 2001-2025. All rights reserved.
+﻿#region Copyright Syncfusion Inc. 2001-{{copyright}}.
+// Copyright Syncfusion Inc. 2001-{{copyright}}. All rights reserved.
 // Use of this code is subject to the terms of our license.
 // A copy of the current license can be obtained at any time by e-mailing
 // licensing@syncfusion.com. Any infringement will be prosecuted under
@@ -221,7 +221,9 @@ namespace ReportServices.Controllers.demos
 
         private Stream ReadFiles(string filePath)
         {
+            #pragma warning disable SCS0018
             using (FileStream fileStream = File.OpenRead(filePath))
+            #pragma warning restore SCS0018
             {
                 fileStream.Position = 0;
                 MemoryStream memStream = new MemoryStream();
@@ -239,7 +241,10 @@ namespace ReportServices.Controllers.demos
 
             string targetFolder = Path.Combine(this.basePath, "resources", "demos", "Report");
             string reportPat = Path.Combine(targetFolder, catagoryName, reportName);
+            #pragma warning disable SCS0018
             File.WriteAllBytes(reportPat, reportdata.ToArray());
+            #pragma warning disable SCS0018
+
             return true;
         }
 
@@ -302,7 +307,9 @@ namespace ReportServices.Controllers.demos
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
             XmlReader reader = XmlReader.Create(str);
+            #pragma warning disable SCS0028
             return (T)serializer.Deserialize(reader);
+            #pragma warning restore SCS0028
         }
 
         private Stream GetFileToStream(byte[] _fileContent)

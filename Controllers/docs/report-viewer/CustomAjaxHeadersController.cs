@@ -28,6 +28,7 @@ namespace ReportServices.Controllers.docs
         public string DefaultParameter = null;
         string authenticationHeader;
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostReportAction(Dictionary<string, object> jsonResult)
         {
@@ -55,6 +56,7 @@ namespace ReportServices.Controllers.docs
 
             return null;
         }
+        #pragma warning restore SCS0016
 
         //Get action for getting resources from the report
         [ActionName("GetResource")]
@@ -64,11 +66,13 @@ namespace ReportServices.Controllers.docs
             return ReportHelper.GetResource(resource, this, this._cache);
         }
 
+        #pragma warning disable SCS0016
         [HttpPost]
         public object PostFormReportAction()
         {
             return ReportHelper.ProcessReport(null, this, _cache);
         }
+        #pragma warning restore SCS0016
 
 
         //Method will be called when initialize the report options before start processing the report        

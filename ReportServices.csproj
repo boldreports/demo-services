@@ -34,7 +34,7 @@
     <PackageReference Include="BoldReports.Data.ElasticSearch" Version="13.1.29" />
     <PackageReference Include="BoldReports.Data.SSAS" Version="13.1.29" />
     <PackageReference Include="BoldReports.Data.AWSSecretsManager" Version="13.1.29" />
-    <PackageReference Include="log4net" Version="2.0.15" />
+    <PackageReference Include="log4net" Version="3.3.0" />
     <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="9.0.11" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="BoldReports.Data.MySQL" Version="13.1.29" />
